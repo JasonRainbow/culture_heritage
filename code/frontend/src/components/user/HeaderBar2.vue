@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="header-title">
-      中国语言文化作品国际传播效果分析系统
+      湖湘传统技艺类非物质文化遗产数字化与虚拟体验平台
     </div>
     <div id="show-login-div">
       <div id="user-info" v-if="loginFlag"> <!--显示登录用户-->
@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import {hasLogin} from "../../utils/auth";
 
 export default {
   name: "HeaderBar2",
@@ -46,12 +45,12 @@ export default {
     return {
       items: [
         { icon: 'nav-tab-item_icon iconfont icon-home', label: '首页', path: '/home'},
-        { icon: 'nav-tab-item_icon iconfont icon-send-fill', label: '传播效果评估', path: '/effect'},
-        { icon: 'nav-tab-item_icon iconfont icon-shujuxianshi', label: '大屏模式', path: '/big-screen'},
-        { icon: 'nav-tab-item_icon iconfont icon-zhinengtuijian', label: '作品推荐', path: '/recommend'},
-        { icon: 'nav-tab-item_icon iconfont icon-project_info', label: '背景介绍', path: '/background'},
+        { icon: 'nav-tab-item_icon iconfont icon-send-fill', label: '虚拟体验', path: '/effect'},
+        { icon: 'nav-tab-item_icon iconfont icon-shujuxianshi', label: '线下活动', path: '/big-screen'},
+        { icon: 'nav-tab-item_icon iconfont icon-zhinengtuijian', label: '论坛', path: '/recommend'},
+        /*{ icon: 'nav-tab-item_icon iconfont icon-project_info', label: '背景介绍', path: '/background'},
         { icon: 'nav-tab-item_icon iconfont icon-rencaishuangxuanhui', label: '团队介绍', path: '/team'},
-        { icon: 'nav-tab-item_icon iconfont icon-a-commandinquiry-fill', label: '常见问题', path: '/question'},
+        { icon: 'nav-tab-item_icon iconfont icon-a-commandinquiry-fill', label: '常见问题', path: '/question'},*/
         { icon: 'nav-tab-item_icon iconfont icon-user', label: '个人中心', path: '/personal'},
       ],
       // activeIndex: Number(sessionStorage.getItem("activeIndex")),
@@ -76,7 +75,7 @@ export default {
       // sessionStorage.setItem("activeIndex", index)
     },
     judgeLogin(){ //判断用户是否登录
-      this.loginFlag = hasLogin()
+      this.loginFlag = false
     },
   },
   computed: {
@@ -106,7 +105,7 @@ export default {
   },
   watch: {
     // 监听路由的变化
-    $route(to, from) {
+    $route(to) {
       // console.log("路由变化了")
       // console.log("当前页面路由：", to);
       // console.log("上一个路由:", from)
@@ -142,7 +141,7 @@ body {
 
   width: 100%;
   height: 80px;
-  background-color: #195161;
+  background-color: #196789;
   display: flex;
 
   border-bottom-left-radius: 90px;
@@ -171,7 +170,7 @@ body {
 }
 
 .nav-tab-item:hover {
-  background-color: #2b729c;
+  background-color: #185379;
   border-radius: 20px;
 }
 
@@ -206,7 +205,7 @@ body {
   height: 100%;
   width: 210px;
 
-  background-color: #2b729c;
+  background-color: #185379;
   border-radius: 20px;
 
   transition: 0.3s;
@@ -214,7 +213,7 @@ body {
 
 #header-title {
   height: 80px;
-  background-color: #195161;
+  background-color: #196789;
   color: white;
   font-size: 30px;
   text-align: center;
@@ -226,7 +225,7 @@ body {
 #show-login-div{
   height: 100px;
   width:  220px;
-  background-color: #195161;
+  background-color: #196789;
   position: absolute;
   top: 25px;
   right: 40px;

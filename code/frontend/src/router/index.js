@@ -4,7 +4,11 @@ import Router from 'vue-router';
 // 登录
 
 // 管理员首页
-import index from '../views/index';
+import PersonPage from '../views/user/profile/index';
+import HomePage from "@/views/user/HomePage";
+import UserRegister from "@/views/user/UserRegister";
+import UserLogin from "@/views/user/UserLogin";
+import UserIndex from "../views/index"
 
 // 启用路由
 Vue.use(Router);
@@ -35,7 +39,7 @@ const router = new Router({
     {
       path: "/",
       name: "客户端", // 客户端网页的首页
-      component: index,
+      component: UserIndex,
       meta: {
         requireAuth: false
       },
@@ -49,7 +53,14 @@ const router = new Router({
             requireAuth: false
           }
         },
-
+        {
+          path: "/personal",
+          name: "用户个人中心",
+          component: PersonPage,
+          meta: {
+            requireAuth: false
+          }
+        },
       ]
     }
   ]

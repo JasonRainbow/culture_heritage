@@ -48,12 +48,6 @@
             <el-tab-pane label="修改密码" name="resetPwd">
               <resetPwd />
             </el-tab-pane>
-            <el-tab-pane label="监测作品列表" name="monitor-works">
-              <monitor-list :user-id="user.id"></monitor-list>
-            </el-tab-pane>
-            <el-tab-pane label="申请监测" name="monitor-request">
-              <apply-monitor></apply-monitor>
-            </el-tab-pane>
           </el-tabs>
         </el-card>
       </el-col>
@@ -65,9 +59,6 @@
 import userAvatar from "./userAvatar";
 import userInfo from "./userInfo";
 import resetPwd from "./resetPwd";
-import {getUserProfile} from "../../../api/userAPI";
-import monitorList from "../../../components/user/common/monitorList";
-import applyMonitor from "../../../components/user/common/applyMonitor";
 import 'animate.css'
 
 export default {
@@ -77,8 +68,6 @@ export default {
     userAvatar,
     userInfo,
     resetPwd,
-    monitorList,
-    applyMonitor
   },
   data() {
     return {
@@ -96,14 +85,7 @@ export default {
   },
   methods: {
     getUser() {
-      getUserProfile().then(res=>{
-        if (res.code === "0") {
-          this.user = res.data;
-          // console.log(this.user)
-        } else {
-          console.log(res.msg)
-        }
-      })
+
     },
     logout() {
       this.$confirm('退出登录, 是否继续?', '提示', {
@@ -112,7 +94,7 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          setTimeout(() => { // 用户退出登录
+          /*setTimeout(() => { // 用户退出登录
             this.$store.dispatch("Logout").then(()=>{
               this.$message({
                 type: 'success',
@@ -121,7 +103,7 @@ export default {
               this.$router.push("/home")
             })
             // location.reload()
-          }, 1000)
+          }, 1000)*/
         })
         .catch(() => {
           this.$message({

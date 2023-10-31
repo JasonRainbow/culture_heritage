@@ -15,6 +15,13 @@ Vue.use(scroll)
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 
+// 引入全局样式
+import './assets/styles/index.scss' // global css
+import './assets/styles/ruoyi.scss' // ruoyi css
+
+// 引入自定义图标
+import './assets/icons2/iconfont.css'
+
 // 引入路由
 import router from './router';
 // 引入状态管理

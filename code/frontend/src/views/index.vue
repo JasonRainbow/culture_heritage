@@ -15,11 +15,24 @@
 </template>
 
 <script>
+import HeaderBar2 from "@/components/user/HeaderBar2";
+import MyFooter from "@/components/user/MyFooter";
+import vuescroll from "vuescroll";
+
 export default {
-  name: "UserIndex"
+  name: "UserIndex",
+  components: {
+    HeaderBar2,
+    MyFooter,
+    vuescroll
+  }
 }
 </script>
 
 <style scoped>
+.user-index,el-main{
+  background-color: #ecf5ff;
+}
 
 </style>
+

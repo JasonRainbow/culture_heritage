@@ -151,41 +151,8 @@
                 <li>
                   <a href="https://news.google.com/">Google News</a>
                 </li>
-
                 <li>
-                  <a href="https://www.youtube.com/">Youtube</a>
-                </li>
-
-                <li>
-                  <a href="https://twitter.com">Twitter</a>
-                </li>
-
-                <li>
-                  <a href="https://instagram.com">Instagram</a>
-                </li>
-
-                <li>
-                  <a href="https://global.chinadaily.com.cn">China Daily</a>
-                </li>
-
-                <li>
-                  <a href="http://www.github.com">GitHub</a>
-                </li>
-
-                <li>
-                  <a href="https://www.amazon.com">Amazon</a>
-                </li>
-                <li>
-                  <a href="http://www.goodreads.com/">GoodReads</a>
-                </li>
-                <li>
-                  <a href="https://www.rottentomatoes.com/">烂番茄</a>
-                </li>
-                <li>
-                  <a href="https://www.douban.com">豆瓣</a>
-                </li>
-                <li>
-                  <a href="https://www.imdb.com/">IMDb</a>
+                  <a href="https://www.ihchina.cn/">中国非物质文化遗产网</a>
                 </li>
               </ul>
             </li>
@@ -339,7 +306,7 @@ export default {
 }
 .footer {
   z-index: 1;
-  --footer-background:#195161;
+  --footer-background: #083d63;
   display: grid;
   position: relative;
   grid-area: footer;

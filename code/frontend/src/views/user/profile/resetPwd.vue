@@ -28,7 +28,6 @@
 </template>
 
 <script>
-import {updateUserPassword} from "../../../api/userAPI";
 
 export default {
   components: {
@@ -73,7 +72,7 @@ export default {
     submit() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          updateUserPassword(this.user).then(res => {
+          /*updateUserPassword(this.user).then(res => {
             if (res.code === "0") {
               this.$message.success("修改成功");
               // 将密码输入框全设置为空
@@ -83,7 +82,7 @@ export default {
             } else {
               this.$message.error(res.msg);
             }
-          });
+          });*/
         }
       });
     },

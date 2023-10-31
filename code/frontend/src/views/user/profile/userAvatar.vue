@@ -55,10 +55,7 @@
 
 <script>
 import { VueCropper } from 'vue-cropper'
-import {debounce, updateUserInfo} from "../../../utils/util";
-import {fileUpload} from "../../../api/fileAPI";
-import {userUpdate} from "../../../api/userAPI";
-import {setLocalStorageItem} from "../../../utils/auth";
+import {debounce} from "@/utils/util";
 
 
 export default {
@@ -141,13 +138,13 @@ export default {
         formData.append("file", data);
         // console.log(formData)
         // console.log(data)
-        this.$store.dispatch("uploadAvatar", formData).then((res)=>{
+        /*this.$store.dispatch("uploadAvatar", formData).then((res)=>{
           if (res.code === "0") {
             this.open = false
             this.visible = false;
             this.options.img = res.data;
           }
-        })
+        })*/
       });
     },
     // 实时预览
