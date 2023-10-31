@@ -19,6 +19,8 @@ import HeaderBar2 from "@/components/user/HeaderBar2";
 import MyFooter from "@/components/user/MyFooter";
 import vuescroll from "vuescroll";
 
+
+
 export default {
   name: "UserIndex",
   components: {
