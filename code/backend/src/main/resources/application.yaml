@@ -1,0 +1,18 @@
+server:
+  port: 5000
+  servlet:
+    context-path: /
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://localhost:3306/studb
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: org.example.pojo
+  global-config:
+    db-config:
+      id-type: auto
