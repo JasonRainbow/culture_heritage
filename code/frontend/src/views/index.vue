@@ -5,7 +5,7 @@
         <HeaderBar2></HeaderBar2>
       </el-header>
       <el-main>
-        <keep-alive :include="['EffectPage']">
+        <keep-alive :include="['']">
           <router-view></router-view>
         </keep-alive>
       </el-main>

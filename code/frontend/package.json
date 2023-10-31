@@ -16,7 +16,9 @@
     "screenfull": "5.0.2",
     "vue-router": "^3.0.1",
     "vue-seamless-scroll": "^1.1.23",
-    "vuescroll": "^4.18.0"
+    "vuescroll": "^4.18.0",
+    "vuex": "^3.0.1",
+    "vue-cropper": "0.5.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
