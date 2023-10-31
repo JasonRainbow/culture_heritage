@@ -69,7 +69,16 @@ const router = new Router({
 // 对路由进行权限控制
 // 全局路由拦截器  前置路由守卫
 router.beforeEach((to, from, next) => {
-  next()
+  console.log("111")
+  if (to.matched.length !== 0) {
+    next()
+  } else {
+    console.log("222")
+    next({
+      path: "/home",
+      query: {redirect: to.fullPath}
+    })
+  }
 })
 
 // 全局后置路由守卫——初始化的时候被调用、每次路由切换后被调用
