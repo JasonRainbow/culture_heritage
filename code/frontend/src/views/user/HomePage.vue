@@ -6,9 +6,9 @@
       </el-col>
     </el-row>
     <el-row style="display: flex; justify-content: center">
-      <el-col :span="16" :xs="24" align="center">
+      <el-col :span="18" :xs="24" align="center">
         <el-card class="box-card grid-content" shadow="always">
-
+          <Search></Search>
         </el-card>
       </el-col>
     </el-row>
@@ -66,12 +66,14 @@
 <script>
 import SlideShow from "@/components/user/SlideShow";
 import DistributeMap from "@/components/user/DistributeMap";
+import Search from "@/components/user/Search";
 
 export default {
   name: "HomePage",
   components: {
     SlideShow,
-    DistributeMap
+    DistributeMap,
+    Search
   },
   data() {
     return {

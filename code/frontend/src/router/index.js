@@ -9,6 +9,7 @@ import HomePage from "@/views/user/HomePage";
 import UserRegister from "@/views/user/UserRegister";
 import UserLogin from "@/views/user/UserLogin";
 import UserIndex from "../views/index"
+import VirtualExperience from "@/views/user/VirtualExperience";
 
 // 启用路由
 Vue.use(Router);
@@ -49,6 +50,14 @@ const router = new Router({
           path: "/home",
           name: "客户端首页",
           component: HomePage,
+          meta: {
+            requireAuth: false
+          }
+        },
+        {
+          path: "/experience",
+          name: "虚拟体验",
+          component: VirtualExperience,
           meta: {
             requireAuth: false
           }
