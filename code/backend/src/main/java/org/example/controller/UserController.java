@@ -16,8 +16,8 @@ public class UserController {
     UserService userService;
 
     @Operation(summary = "注册", description = "用户注册接口")
-    @PostMapping("/regist")
-    public Result regist(@RequestBody User user){
+    @PostMapping("/register")
+    public Result register(@RequestBody User user){
         System.out.println(user);
         return userService.register(user);
     }
