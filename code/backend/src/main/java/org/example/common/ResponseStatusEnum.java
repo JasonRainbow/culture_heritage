@@ -28,6 +28,10 @@ public enum ResponseStatusEnum implements CommonResp{
     REQUEST_BODY_MISSING("1017", "请求数据体缺失"),
     LOGIN_NOT_ADMIN("1018", "管理员登录失败，不是管理员"),
 
+    USERNAME_EMPTY("1019", "用户名为空"),
+    PASSWORD_EMPTY("1020", "密码为空"),
+    NAME_EMPTY("1021", "用户昵称为空"),
+
 
     /** 20XX 表示服务器错误 */
     PICTURE_UPLOAD_FAILED("2001","上传图片失败"),
