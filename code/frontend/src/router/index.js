@@ -11,6 +11,7 @@ import UserLogin from "@/views/user/UserLogin";
 import UserIndex from "../views/index"
 import VirtualExperience from "@/views/user/VirtualExperience";
 import Forum from "@/views/user/Forum.vue";
+import DisplayModel from "@/views/user/DisplayModel";
 
 // 启用路由
 Vue.use(Router);
@@ -35,6 +36,15 @@ const router = new Router({
       hidden: true,
       meta: {
         title: '用户注册',
+        requireAuth: false
+      }
+    },
+    {
+      path: '/big-screen',
+      name: '模型大屏展示',
+      component: DisplayModel,
+      meta: {
+        title: '模型大屏展示',
         requireAuth: false
       }
     },
