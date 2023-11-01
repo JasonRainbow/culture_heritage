@@ -5,6 +5,7 @@ import io.micrometer.common.util.StringUtils;
 import org.example.common.ResponseStatusEnum;
 import org.example.exception.CustomException;
 import org.example.mapper.UserMapper;
+import org.example.pojo.ActivityPromotionApply;
 import org.example.pojo.User;
 import org.example.pojo.UserPassword;
 import org.example.service.UserService;
@@ -71,6 +72,15 @@ public class UserServiceImpl implements UserService {
             }
         }
         return Result.error(ResponseStatusEnum.PASSWORD_ERROR);
+    }
+
+    @Override
+    public Result activityPromotionApply(ActivityPromotionApply activityPromotionApply) {
+        int rows = userMapper.insertActivityPromotionApply(activityPromotionApply);
+        if(rows >0){
+            return Result.success();
+        }
+        return Result.error(ResponseStatusEnum.ERROR);
     }
 
     public void validate(String username, String password) {
