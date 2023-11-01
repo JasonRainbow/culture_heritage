@@ -46,7 +46,7 @@ export default {
       items: [
         { icon: 'nav-tab-item_icon iconfont icon-home', label: '首页', path: '/home'},
         { icon: 'nav-tab-item_icon iconfont icon-send-fill', label: '虚拟体验', path: '/experience'},
-        { icon: 'nav-tab-item_icon iconfont icon-shujuxianshi', label: '线下活动', path: '/big-screen'},
+        { icon: 'nav-tab-item_icon iconfont icon-shujuxianshi', label: '线下活动', path: '/offlineActivity'},
         { icon: 'nav-tab-item_icon iconfont icon-zhinengtuijian', label: '论坛', path: '/forum'},
         /*{ icon: 'nav-tab-item_icon iconfont icon-project_info', label: '背景介绍', path: '/background'},
         { icon: 'nav-tab-item_icon iconfont icon-rencaishuangxuanhui', label: '团队介绍', path: '/team'},
@@ -57,14 +57,11 @@ export default {
       // activeIndex: Number(sessionStorage.getItem("activeIndex")),
       routes_map: {
         "/home": 0,
-        "/effect": 1,
-        "/recommend": 3,
-        "/background": 4,
-        "/team": 5,
-        "/question": 6,
-        "/personal": 7,
-        "/not-login": 7,
-        "/sentiment-assessment":1
+        "/offlineActivity": 1,
+        "experience": 2,
+        "/forum": 3,
+        "/personal": 4,
+        "/not-login": 4,
       },
       activeIndex: 0,
       loginFlag: true,

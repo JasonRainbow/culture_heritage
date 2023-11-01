@@ -8,5 +8,8 @@ export default new Vuex.Store({
     user: "",
     token: "" // 从cookie中获取token
   },
-
+  mutations: {
+  },
+  actions: {
+  },
 })
