@@ -25,72 +25,72 @@ export default {
       dataList: [
         {
           name: "常德市",
-          value: 3,
-          per: 0
+          num: 3,
+          value: 0
         },
         {
           name: "郴州市",
-          value: 4,
-          per: 0
+          num: 4,
+          value: 0
         },
         {
           name: "衡阳市",
-          value: 1,
-          per: 0
+          num: 1,
+          value: 0
         },
         {
           name: "怀化市",
-          value: 1,
-          per: 0
+          num: 1,
+          value: 0
         },{
           name: "娄底市",
-          value: 4,
-          per: 0
+          num: 4,
+          value: 0
         },
         {
           name: "邵阳市",
-          value: 2,
-          per: 0
+          num: 2,
+          value: 0
         },
         {
           name: "湘潭市",
-          value: 1,
-          per: 0
+          num: 1,
+          value: 0
         },
         {
           name: "湘西土家族苗族自治州",
-          value: 6,
-          per: 0
+          num: 10,
+          value: 0
         },
         {
           name: "益阳市",
-          value: 1,
-          per: 0
+          num: 1,
+          value: 0
         },
         {
           name: "永州市",
-          value: 1,
-          per: 0
+          num: 1,
+          value: 0
         },
         {
           name: "岳阳市",
-          value: 0,
-          per: 0
+          num: 0,
+          value: 0
         },
         {
           name: "张家界市",
-          value: 1,
-          per: 0
+          num: 1,
+          value: 0
         },
         {
           name: "长沙市",
-          value: 1,
-          per: 0
+          num: 1,
+          value: 0
         },
         {
           name: "株洲市",
-          value: 2,
-          per: 0
+          num: 2,
+          value: 0
         },
       ]
     }
@@ -99,18 +99,18 @@ export default {
     initWorldMapChart(){
       let sum = 0
       this.dataList.map((item)=>{
-        sum += item.value;
+        sum += item.num;
       })
       for(let i = 0; i < this.dataList.length; i++){
-        this.dataList[i].per = Math.round(this.dataList[i].value / sum * 100)
+        this.dataList[i].value = Math.round(this.dataList[i].num / sum * 100)
       }
       this.option = {
         tooltip: {
           //数据格式化
           formatter: function(params) {
             return (
-                params.name + " 共" + params.value +  "个，占："+
-                params.data.per+"%"
+                params.name + " 共" + params.data.num +  "个，占："+
+                params.value+"%"
             );
           },
           backgroundColor: 'rgba(19, 25, 47, 0.6)',
@@ -156,9 +156,9 @@ export default {
           roam: true, //不开启缩放和平移
           zoom: 1, //视角缩放比例
           label: {
-            show: false,//是否在地图上显示国家名字
+            show: true,//是否在地图上显示地区名字
             fontSize: this.screenWidth * 0.0066,
-            color: "rgba(201,174,174,0.7)",
+            color: "rgb(13,43,133)",
           },
           nameMap:{
             "常德": "常德市",
