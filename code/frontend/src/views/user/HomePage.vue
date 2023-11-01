@@ -13,7 +13,7 @@
       </el-col>
     </el-row>
     <el-row :gutter="40">
-      <el-col :span="10" :xs="24" :sm="24" :lg="10">
+      <el-col :span="10" :xs="24" :sm="24" :lg="10">8
         <el-card class="box-card grid-content" shadow="always">
           <div class="card-title">热点文化作品</div>
 <!--          <el-card v-for="item in messages" :key="item.id"
