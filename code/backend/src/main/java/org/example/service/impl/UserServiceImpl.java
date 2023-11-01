@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
-    public Result regist(User user){
+    public Result register(User user){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username",user.getUsername());
         boolean isExist = userMapper.exists(queryWrapper);
@@ -30,13 +30,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result login(String username, String password) {
+    public Result login(User user) {
+        String username = user.getUsername();
+        String password = user.getPassword();
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username",username).eq("password",MD5Util.encrypt(password));
-        User user = userMapper.selectOne(queryWrapper);
-        user.setPassword(null);
-        if(user != null){
-            return Result.success(user);
+        User res = userMapper.selectOne(queryWrapper);
+        if(res != null){
+            res.setPassword(null);
+            return Result.success(res);
         }
         return Result.error("-1","账号或者密码错误");
     }
