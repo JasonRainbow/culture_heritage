@@ -10,6 +10,7 @@ import UserRegister from "@/views/user/UserRegister";
 import UserLogin from "@/views/user/UserLogin";
 import UserIndex from "../views/index"
 import VirtualExperience from "@/views/user/VirtualExperience";
+import Forum from "@/views/user/Forum.vue";
 
 // 启用路由
 Vue.use(Router);
@@ -70,6 +71,14 @@ const router = new Router({
             requireAuth: false
           }
         },
+        {
+          path: "/forum",
+          name: "论坛",
+          component: Forum,
+          meta: {
+            requireAuth: false
+          }
+        }
       ]
     }
   ]
