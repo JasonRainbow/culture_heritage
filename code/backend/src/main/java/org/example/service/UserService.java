@@ -6,4 +6,5 @@ import org.example.utils.Result;
 public interface UserService {
     public Result regist(User user);
     public Result login(String username, String password);
+    public Result update(User user);
 }

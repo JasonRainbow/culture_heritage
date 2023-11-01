@@ -4,12 +4,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.apache.ibatis.annotations.Param;
-import org.example.mapper.UserMapper;
 import org.example.pojo.User;
 import org.example.service.UserService;
 import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name="用户",description = "用户相关接口")
@@ -32,4 +30,10 @@ public class UserController {
         return userService.login(username, password);
     }
 
+    @Operation(summary = "修改", description = "修改用户信息接口，传用户名，其他修改哪个传哪个，不需要传的设为null")
+    @PutMapping("/update")
+    public Result update(@RequestBody User user){
+
+        return userService.update(user);
+    }
 }

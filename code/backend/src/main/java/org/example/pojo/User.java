@@ -14,9 +14,9 @@ public class User {
     private Integer id;
     @Schema(title = "用户名，必需")
     private String username;
-    @Schema(title = "用户昵称，必需")
+    @Schema(title = "用户昵称，非必需")
     private String name;
-    @Schema(title = "用户密码，必需")
+    @Schema(title = "用户密码，登录时必需")
     private String password;
     @Schema(title = "用户工作单位，非必须")
     @TableField("workUnit")

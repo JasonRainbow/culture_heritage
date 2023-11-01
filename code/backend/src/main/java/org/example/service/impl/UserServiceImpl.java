@@ -40,4 +40,15 @@ public class UserServiceImpl implements UserService {
         }
         return Result.error("-1","账号或者密码错误");
     }
+
+    @Override
+    public Result update(User user) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username",user.getUsername());
+        int count = userMapper.update(user,queryWrapper);
+        if(count>0){
+            return Result.success();
+        }
+        return Result.error("-1", "修改失败");
+    }
 }
