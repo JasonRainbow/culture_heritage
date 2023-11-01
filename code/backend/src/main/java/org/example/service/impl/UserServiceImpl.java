@@ -49,11 +49,11 @@ public class UserServiceImpl implements UserService {
     }
 
     public void validate(String username, String password) {
-        if (StringUtils.isEmpty(username)) {
+        if (StringUtils.isBlank(username)) {
             // 用户名为空
             throw new CustomException(ResponseStatusEnum.USERNAME_EMPTY);
         }
-        if (StringUtils.isEmpty(password)) {
+        if (StringUtils.isBlank(password)) {
             // 密码为空
             throw new CustomException(ResponseStatusEnum.PASSWORD_EMPTY);
         }
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
      */
     public void validate(String username, String password, String name) {
         validate(username, password);
-        if (StringUtils.isEmpty(name)) {
+        if (StringUtils.isBlank(name)) {
             throw new CustomException(ResponseStatusEnum.NAME_EMPTY);
         }
     }

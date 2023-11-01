@@ -149,10 +149,10 @@
               <h1 class="nav__title">Links|友情链接</h1>
               <ul class="nav__ul nav__ul--extra">
                 <li>
-                  <a href="https://news.google.com/">Google News</a>
+                  <a href="https://news.google.com/" target="_blank">Google News</a>
                 </li>
                 <li>
-                  <a href="https://www.ihchina.cn/">中国非物质文化遗产网</a>
+                  <a href="https://www.ihchina.cn/" target="_blank">中国非物质文化遗产网</a>
                 </li>
               </ul>
             </li>
