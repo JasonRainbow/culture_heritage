@@ -1,11 +1,14 @@
 package org.example.pojo;
 
+
 import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import lombok.Builder;
 
-@Data
 @Schema(title = "用户相关信息")
+@Data
+@Builder
 public class User {
     @Schema(title = "用户id，不需要传")
     private Integer id;

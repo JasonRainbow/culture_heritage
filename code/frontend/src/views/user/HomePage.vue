@@ -1,9 +1,15 @@
 <template>
   <div>
     <el-row style="display: flex; justify-content: center">
-      <el-col :span="17" :xs="24" align="center">
-<!--        <slide-show></slide-show>-->
-        轮播图
+      <el-col :span="14" :xs="24" align="center">
+        <slide-show></slide-show>
+      </el-col>
+    </el-row>
+    <el-row style="display: flex; justify-content: center">
+      <el-col :span="18" :xs="24" align="center">
+        <el-card class="box-card grid-content" shadow="always">
+          <Search></Search>
+        </el-card>
       </el-col>
     </el-row>
     <el-row :gutter="40">
@@ -49,24 +55,25 @@
       </el-col>
       <el-col :span="14" :xs="24" :sm="24" :lg="14">
         <el-card class="box-card grid-content" shadow="always" align="center">
-
+          <div class="card-title">湖南省传统技艺类非物质文化遗产分布地图</div>
+          <distribute-map height="550px"></distribute-map>
         </el-card>
-      </el-col>
-    </el-row>
-    <el-row :gutter="40" type="flex" justify="center">
-      <el-col :span="18" :xs="24" :sm="24" :lg="18" style="margin-top: 20px">
-
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
+import SlideShow from "@/components/user/SlideShow";
+import DistributeMap from "@/components/user/DistributeMap";
+import Search from "@/components/user/Search";
 
 export default {
   name: "HomePage",
   components: {
-
+    SlideShow,
+    DistributeMap,
+    Search
   },
   data() {
     return {

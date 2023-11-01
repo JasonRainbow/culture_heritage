@@ -9,6 +9,7 @@ import HomePage from "@/views/user/HomePage";
 import UserRegister from "@/views/user/UserRegister";
 import UserLogin from "@/views/user/UserLogin";
 import UserIndex from "../views/index"
+import VirtualExperience from "@/views/user/VirtualExperience";
 
 // 启用路由
 Vue.use(Router);
@@ -54,6 +55,14 @@ const router = new Router({
           }
         },
         {
+          path: "/experience",
+          name: "虚拟体验",
+          component: VirtualExperience,
+          meta: {
+            requireAuth: false
+          }
+        },
+        {
           path: "/personal",
           name: "用户个人中心",
           component: PersonPage,
@@ -69,7 +78,16 @@ const router = new Router({
 // 对路由进行权限控制
 // 全局路由拦截器  前置路由守卫
 router.beforeEach((to, from, next) => {
-  next()
+  console.log("111")
+  if (to.matched.length !== 0) {
+    next()
+  } else {
+    console.log("222")
+    next({
+      path: "/home",
+      query: {redirect: to.fullPath}
+    })
+  }
 })
 
 // 全局后置路由守卫——初始化的时候被调用、每次路由切换后被调用
