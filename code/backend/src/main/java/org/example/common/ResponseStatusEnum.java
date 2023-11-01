@@ -25,8 +25,15 @@ public enum ResponseStatusEnum implements CommonResp{
     TOKEN_EXPIRED("1015", "token过期"),
     AUTHENTICATE_FAIL("1016", "认证失败，无法访问系统资源"),
 
+
     REQUEST_BODY_MISSING("1017", "请求数据体缺失"),
     LOGIN_NOT_ADMIN("1018", "管理员登录失败，不是管理员"),
+
+    USERNAME_EMPTY("1019", "用户名为空"),
+    PASSWORD_EMPTY("1020", "密码为空"),
+    NAME_EMPTY("1021", "用户昵称为空"),
+    UPDATE_PASSWORD_EMPTY("1022","修改密码为空"),
+
 
 
     /** 20XX 表示服务器错误 */

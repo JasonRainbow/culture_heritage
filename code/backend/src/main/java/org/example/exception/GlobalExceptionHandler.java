@@ -6,6 +6,7 @@ import cn.hutool.log.level.Level;
 import org.example.common.ResponseStatusEnum;
 import org.example.utils.Result;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -47,4 +48,9 @@ public class GlobalExceptionHandler {
         return Result.error(ResponseStatusEnum.REQUEST_BODY_MISSING);
     }
 
+    @ExceptionHandler(value = HttpRequestMethodNotSupportedException.class)
+    public Result handler(HttpRequestMethodNotSupportedException exception) {
+        log.log(Level.ERROR, exception.getMessage());
+        return Result.error(String.valueOf(exception.getStatusCode().value()), exception.getMessage());
+    }
 }
