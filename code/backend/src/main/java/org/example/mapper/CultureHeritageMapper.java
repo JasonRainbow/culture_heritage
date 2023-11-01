@@ -1,7 +1,7 @@
 package org.example.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.example.pojo.Culture;
+import org.example.pojo.CultureHeritage;
 
-public interface CultureHeritageMapper extends BaseMapper<Culture> {
+public interface CultureHeritageMapper extends BaseMapper<CultureHeritage> {
 }

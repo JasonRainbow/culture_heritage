@@ -1,12 +1,14 @@
 package org.example.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class Culture {
+@TableName("culture")
+public class CultureHeritage {
     @TableField("cultureId")
     private Integer cultureId;
     private String name;

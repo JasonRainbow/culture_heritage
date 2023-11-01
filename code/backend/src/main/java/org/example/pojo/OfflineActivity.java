@@ -1,11 +1,13 @@
 package org.example.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class Offlineexperience {
+@TableName("offlineexperience")
+public class OfflineActivity {
     private Integer activityId;
     private Integer cultureId;
     private Integer contactId;

@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.micrometer.common.util.StringUtils;
 import org.example.mapper.CultureHeritageMapper;
-import org.example.pojo.Culture;
+import org.example.pojo.CultureHeritage;
 import org.example.pojo.SearchHeritage;
 import org.example.service.CultureHeritageService;
 import org.example.utils.Result;
@@ -24,7 +24,7 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
 
     @Override
     public Result getAllHeritageByPage(Integer pageSize, Integer pageNumber) {
-        IPage<Culture> page =new Page<>(pageNumber, pageSize);
+        IPage<CultureHeritage> page =new Page<>(pageNumber, pageSize);
         cultureHeritageMapper.selectPage(page,null);
         Map map = new HashMap();
         map.put("current",page.getCurrent());
@@ -36,8 +36,8 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
 
     @Override
     public Result searchHeritage(SearchHeritage searchHeritage) {
-        Page<Culture> page = new Page<>(searchHeritage.getPageNumber(), searchHeritage.getPageSize());
-        QueryWrapper<Culture> queryWrapper = new QueryWrapper<>();
+        Page<CultureHeritage> page = new Page<>(searchHeritage.getPageNumber(), searchHeritage.getPageSize());
+        QueryWrapper<CultureHeritage> queryWrapper = new QueryWrapper<>();
         queryWrapper.like(!StringUtils.isBlank(searchHeritage.getArea()),"declaringUnit",searchHeritage.getArea())
                 .like(!StringUtils.isBlank(searchHeritage.getPostTime()),"announcementTime",searchHeritage.getPostTime())
                 .like(!StringUtils.isBlank(searchHeritage.getName()),"name",searchHeritage.getName());
