@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
-    public Result<?> register(User user){
+    public Result register(User user){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username",user.getUsername());
         boolean isExist = userMapper.exists(queryWrapper);
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<?> login(User user) {
+    public Result login(User user) {
         String username = user.getUsername();
         String password = user.getPassword();
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
