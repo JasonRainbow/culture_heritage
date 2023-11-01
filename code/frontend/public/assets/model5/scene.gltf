@@ -1,0 +1,333 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 35569,
+      "max": [
+        18.535860061645508,
+        12.78555679321289,
+        13.687477111816406
+      ],
+      "min": [
+        -13.388227462768555,
+        -7.531826496124268,
+        -15.679193496704102
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 426828,
+      "componentType": 5126,
+      "count": 35569,
+      "max": [
+        0.99997878074646,
+        0.9998753070831299,
+        0.9999692440032959
+      ],
+      "min": [
+        -0.9999560117721558,
+        -1.0,
+        -0.9998577833175659
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 35569,
+      "max": [
+        0.9999989867210388,
+        0.9993027448654175,
+        0.999342143535614,
+        1.0
+      ],
+      "min": [
+        -0.999909520149231,
+        -0.9999822974205017,
+        -0.9999948740005493,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 35569,
+      "max": [
+        0.9983457922935486,
+        0.8433220386505127
+      ],
+      "min": [
+        0.0016593218315392733,
+        0.001644017407670617
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 284552,
+      "componentType": 5126,
+      "count": 35569,
+      "max": [
+        0.9983457922935486,
+        0.8433220386505127
+      ],
+      "min": [
+        0.0016593218315392733,
+        0.001644017407670617
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 569104,
+      "componentType": 5126,
+      "count": 35569,
+      "max": [
+        0.9983457922935486,
+        0.8433220386505127
+      ],
+      "min": [
+        0.0016593218315392733,
+        0.001644017407670617
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 853656,
+      "componentType": 5126,
+      "count": 35569,
+      "max": [
+        0.9983457922935486,
+        0.8433220386505127
+      ],
+      "min": [
+        0.0016593218315392733,
+        0.001644017407670617
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 189678,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "HUNNU Culture Heritage Digital Center湖南师大文化遗产数字化中心 (https://sketchfab.com/hunnudigital)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/ceramics-chinese-dragon-1272b24a3b644c93acb14c27c085687c",
+      "title": "Ceramics Chinese Dragon 铜官窑 龙"
+    },
+    "generator": "Sketchfab-12.68.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 758712,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1138208,
+      "byteOffset": 758712,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 853656,
+      "byteOffset": 1896920,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 569104,
+      "byteOffset": 2750576,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 3319680,
+      "uri": "scene.bin"
+    }
+  ],
+  "images": [
+    {
+      "uri": "textures/material_baseColor.jpeg"
+    },
+    {
+      "uri": "textures/material_metallicRoughness.png"
+    },
+    {
+      "uri": "textures/material_normal.jpeg"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "material",
+      "normalTexture": {
+        "index": 2
+      },
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0.0,
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Object_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3,
+            "TEXCOORD_1": 4,
+            "TEXCOORD_2": 5,
+            "TEXCOORD_3": 6
+          },
+          "indices": 7,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "root"
+    },
+    {
+      "children": [
+        3
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        1.0,
+        0.0,
+        0.0,
+        -1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "GLTF_SceneRootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        0.07518675562008462,
+        0.0,
+        -0.08670700570846523,
+        0.0,
+        0.0,
+        0.11476564407348633,
+        0.0,
+        0.0,
+        0.08670700570846523,
+        0.0,
+        0.07518675562008462,
+        0.0,
+        0.44521188735961914,
+        0.8963925242424011,
+        -0.06109248846769333,
+        1.0
+      ],
+      "name": "Retopo_mesh.002_0"
+    },
+    {
+      "mesh": 0,
+      "name": "Object_4"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}
