@@ -4,34 +4,47 @@
             <div v-for="(item,index) in forumData" :key="index" class="text item">
                 <el-card class="box-card2">
                     <div style="float:left;width:20%">
-                        <img :src="item.imageUrl" style="height:200px;width: 200px;"/>
+                        <img :src="item.picture" style="height:200px;width: 200px;"/>
                     </div>
                     <div style="width: 78%;float: right;">
                         <h2 style="margin-bottom: 10px;">{{item.title}}</h2>
                         <div>
-                            <span style="float:left;font-size: larger;margin-bottom: 10px;">{{item.time}}</span>
+                            <span style="float:left;font-size: larger;margin-bottom: 10px;">{{item.releaseTime}}</span>
                         </div>
             
                         <div>
-                            <span style="float:left;font-size: large;text-align: left;margin-bottom: 15px;">{{item.content}}
+                            <span style="float:left;font-size: large;text-align: left;margin-bottom: 15px;">{{item.summary | contentLimit}}
                             </span>
                         </div>
                         <div>
-                            <a style="float:left;font-size: larger;text-decoration: none;" :href="item.url">查看讨论</a>
+                            <a style="float:left;font-size: larger;text-decoration: none;" :href="item.more">查看讨论</a>
                         </div>
                     </div>
                 </el-card>
             </div> 
+<!--            <el-pagination-->
+<!--                background-->
+<!--                layout="prev, pager, next"-->
+<!--                :total="1000">-->
+<!--                </el-pagination>-->
+          <div class="block">
             <el-pagination
-                background
-                layout="prev, pager, next"
-                :total="1000">
-                </el-pagination>
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+                :current-page="current"
+                :page-sizes="[5, 10, 15, 20]"
+                :page-size="pageSize"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="total">
+            </el-pagination>
+          </div>
         </el-card>
     </div>
 </template>
   
   <script>
+  import axios from "axios";
+
   export default {
     name: 'HelloWorld',
     props: {
@@ -72,8 +85,46 @@
             imageUrl: 'http://www.yyx.gov.cn/uploadfiles/202012/20201223151708593.png',
             url:'http://www.xinhuanet.com/culture/20220701/7ac919e400a845bca7b6ae1ed12691cb/c.html'
           },
-        ]
+        ],
+        current:1,
+        total:0,
+        pageSize:5
       }
+    },
+    filters:{
+      contentLimit(value){
+        // if(value.length>125){
+        //   return value.substr(0,125)+"..."
+        // }
+        return value
+      }
+    },
+    mounted(){
+      let url = "http://localhost:5000/getAllForum"+'/'+this.pageSize+'/'+this.current;
+      axios.get(url)
+          .then(response =>{
+            console.log("1"+response.code)
+            //console.log(response.data.current)
+            console.log(1,response.data)
+
+              this.forumData=response.data.data.records,
+                  //console.log(this)
+              //console.log(this.forumData),
+              this.current=response.data.data.current,
+              this.pageSize=response.data.data.size,
+              this.total=response.data.data.total
+                  //console.log(this.current)
+      });
+
+    },
+    methods:{
+      handleSizeChange(){
+        this.mounted()
+      },
+      handleCurrentChange(){
+        this.mounted()
+      },
+
     }
   }  
   </script>

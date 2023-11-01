@@ -14,6 +14,8 @@ let errorCode = {
 // axios.defaults.baseURL =
 //   process.env.NODE_ENV === "development" ? "" : "http://120.79.225.116:9090";
 
+
+
 const request = axios.create({
     baseURL: "/api",
     timeout: 5000,

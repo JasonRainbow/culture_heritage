@@ -1,5 +1,6 @@
 package org.example.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
@@ -8,15 +9,21 @@ import lombok.Data;
 @Builder
 @TableName("offlineexperience")
 public class OfflineActivity {
-    private Integer activityId;
+    @TableField("cultureId")
     private Integer cultureId;
+    @TableField("contactId")
     private Integer contactId;
+    @TableField("activityName")
     private String activityName;
+    @TableField("tradeName")
     private String tradeName;
+    @TableField("businessHours")
     private String businessHours;
     private String venue;
     private String introduction;
+    @TableField("activityPhoto")
     private String activityPhoto;
+    @TableField("praiseNumber")
     private Integer praiseNumber;
     private Integer status;
 }
