@@ -4,7 +4,7 @@
             <div v-for="(item,index) in forumData" :key="index" class="text item">
                 <el-card class="box-card2">
                     <div style="float:left;width:20%">
-                        <img src="" style="height:200px;width: 200px;"/>
+                        <img :src="item.imageUrl" style="height:200px;width: 200px;"/>
                     </div>
                     <div style="width: 78%;float: right;">
                         <h2 style="margin-bottom: 10px;">{{item.title}}</h2>
