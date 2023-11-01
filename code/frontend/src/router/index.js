@@ -9,6 +9,9 @@ import HomePage from "@/views/user/HomePage";
 import UserRegister from "@/views/user/UserRegister";
 import UserLogin from "@/views/user/UserLogin";
 import UserIndex from "../views/index"
+// 用户首页
+import OffLineActivity from "@/views/user/OffLineActivity";
+import ActivityApply from "@/views/user/ActivityApply";
 import VirtualExperience from "@/views/user/VirtualExperience";
 import Forum from "@/views/user/Forum.vue";
 
@@ -39,6 +42,12 @@ const router = new Router({
       }
     },
     {
+      path: '/apply',
+      name: '活动宣传申请',
+      component: ActivityApply,
+      hidden: true,
+    },
+    {
       path: "/",
       name: "客户端", // 客户端网页的首页
       component: UserIndex,
@@ -62,6 +71,14 @@ const router = new Router({
           meta: {
             requireAuth: false
           }
+        },
+        {
+          path: "/offlineActivity",
+          name: "线下活动",
+          component: OffLineActivity,
+          meta: {
+            requireAuth: false
+          },
         },
         {
           path: "/personal",
