@@ -3,6 +3,7 @@ package org.example.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.pojo.User;
+import org.example.pojo.UserPassword;
 import org.example.service.UserService;
 import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +29,18 @@ public class UserController {
         return userService.login(user);
     }
 
-    @Operation(summary = "修改", description = "修改用户信息接口，传用户名，其他修改哪个传哪个，不需要传的设为null")
+    @Operation(summary = "修改", description = "修改用户信息接口，传用户名和密码，其他修改哪个传哪个，不需要的不传或者设为null")
     @PutMapping("/update")
     public Result update(@RequestBody User user){
 
         return userService.update(user);
+    }
+
+    @Operation(summary = "修改", description = "修改用户密码接口，传用户名、密码和修改后的密码")
+    @PutMapping("/rpassword")
+    public Result rPassword(@RequestBody UserPassword userPassword){
+        System.out.println(userPassword);
+        return userService.rPassword(userPassword);
+
     }
 }
