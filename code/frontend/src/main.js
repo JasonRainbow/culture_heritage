@@ -27,6 +27,15 @@ import router from './router';
 // 引入状态管理
 import store from './vuex/store';
 
+import AFRAME from "aframe"
+require("./utils/myframe/ar-hit-test")
+require("./utils/myframe/ar-shadows")
+require("./utils/myframe/ar-shadows")
+require("./utils/myframe/background-gradient")
+require("./utils/myframe/info-message")
+require("./utils/myframe/model-viewer")
+Vue.use(AFRAME)
+
 // 配置滚动条组件
 Vue.prototype.$vuescrollConfig = {
   bar: {

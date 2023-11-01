@@ -102,7 +102,7 @@ public class UserServiceImpl implements UserService {
      */
     public void validate(String username, String password, String name) {
         validate(username, password);
-        if (StringUtils.isEmpty(name)) {
+        if (StringUtils.isBlank(name)) {
             throw new CustomException(ResponseStatusEnum.NAME_EMPTY);
         }
     }
