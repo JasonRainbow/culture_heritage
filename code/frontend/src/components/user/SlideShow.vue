@@ -16,19 +16,27 @@ export default {
       show_images: [
         {
           id: 1,
-          path: require('../../assets/img/banner1.png')
+          path: "http://whyimg.wentiyun.cn/feiyi/20230628/de78e8ef-a5b5-43b0-8a89-d31bfbd1b11f.png"
         },
         {
-          id: 2,
-          path: require('../../assets/img/banner2.png')
+         id: 2,
+         path: "http://whyimg.wentiyun.cn/feiyi/20220527/3b5f64a1-1511-41e5-97dd-b95f933e7ae0.png"
         },
         {
           id: 3,
+          path: require('../../assets/img/banner2.png')
+        },
+        {
+          id: 4,
           path: require('../../assets/img/banner3.png')
         },{
-          id: 4,
+          id: 5,
           path: require('../../assets/img/banner4.gif')
         },
+        {
+          id: 6,
+          path: require('../../assets/img/banner1.png')
+        }
       ]
     }
   }

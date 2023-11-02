@@ -48,7 +48,7 @@ public class FileServiceImpl implements FileService {
         }
         // 把文件写入到上传的路径
         FileUtil.writeBytes(file.getBytes(), rootFilePath);
-        return "/files/get/" + flag;
+        return "/api/files/get/" + flag;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class FileServiceImpl implements FileService {
         }
         // 把文件写入到上传的路径
         FileUtil.writeBytes(file.getBytes(), rootFilePath);
-        String url = "http://" + ip + ":" + port + "/files/" + flag;
+        String url = "http://" + ip + ":" + port + "/api/files/get/" + flag;
         JSONObject json = new JSONObject();
         json.set("errno", 0);
         JSONArray arr = new JSONArray();
