@@ -156,8 +156,6 @@ export default {
         this.search_data.pageNumber=1;
       }
       searchHeritage(null,this.search_data).then(res=>{
-        console.log(1,this.search_data)
-        console.log(res.data)
         if(res.code === '0'){
           this.list_data=res.data.records;
           this.pageParam.total=res.data.total
@@ -166,7 +164,6 @@ export default {
     },
     getAllHeritagePaged(param){
       getAllHeritageByPage(param).then(res=>{
-        console.log(res.data)
         if(res.code === '0'){
           this.list_data=res.data.records;
           this.options.postTime=res.data.postTimeList;

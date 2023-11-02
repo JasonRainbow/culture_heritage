@@ -2,6 +2,9 @@ package org.example.exception;
 
 import org.example.common.CommonResp;
 
+/**
+ * @author li
+ */
 public class CustomException extends RuntimeException implements CommonResp {
 
     private final CommonResp commonResp;

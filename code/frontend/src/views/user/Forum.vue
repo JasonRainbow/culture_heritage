@@ -43,7 +43,7 @@
 </template>
 
   <script>
-  import axios from "axios";
+  import {getAllForum} from "@/api/forum_api";
 
   export default {
     name: 'HelloWorld',
@@ -100,22 +100,7 @@
       }
     },
     mounted(){
-      let url = "http://localhost:5000/getAllForum"+'/'+this.pageSize+'/'+this.current;
-      axios.get(url)
-          .then(response =>{
-            console.log("1"+response.code)
-            //console.log(response.data.current)
-            console.log(1,response.data)
-
-              this.forumData=response.data.data.records,
-                  //console.log(this)
-              //console.log(this.forumData),
-              this.current=response.data.data.current,
-              this.pageSize=response.data.data.size,
-              this.total=response.data.data.total
-                  //console.log(this.current)
-      });
-
+      this.getData()
     },
     methods:{
       handleSizeChange(){
@@ -124,7 +109,19 @@
       handleCurrentChange(){
         this.mounted()
       },
-
+      getData() {
+        getAllForum({
+          pageNum: this.current,
+          pageSize: this.pageSize
+        }).then((res)=>{
+          if (res.code === "0") {
+            this.forumData = res.data.records
+            this.current = res.data.current
+            this.pageSize = res.data.size
+            this.total=res.data.total
+          }
+        })
+      }
     }
   }
   </script>

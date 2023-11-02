@@ -8,7 +8,7 @@ spring:
     druid:
       url: jdbc:mysql://localhost:3306/digital_culture_heritage
       username: root
-      password: 291927
+      password: 123456
       driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis-plus:
   mapper-locations: classpath:mappers/*.xml

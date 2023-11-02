@@ -4,6 +4,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * @author yt
+ */
 @Data
 @Builder
 @Schema(title = "用户修改密码相关信息")

@@ -24,21 +24,21 @@ export default new Vuex.Store({
     Login({commit}, {userInfo}) {
       const username = userInfo.username.trim()
       const password = userInfo.password
-      return new Promise((resolve,reject)=>{
+      return new Promise((resolve)=>{
         user_login({username,password}).then((res)=> {
-          console.log("登录返回数据："+res)
+          // console.log("登录返回数据："+res)
           setLocalStorageItem("user",res.data)
           commit('SET_USER', res.data)
           resolve()
-        }).catch((err)=>{
-          // reject(err)
+        }).catch(()=>{
+
         })
       })
     },
     uploadAvatar({commit, state}, formData) {
       return new Promise((resolve, reject)=>{
         uploadUserAvatar(formData).then(res => { // 上传用户头像并保存
-          console.log(res)
+          // console.log(res)
           if (res.code === "0") {
             let store_user = state.user
             store_user.avatar = res.data.avatar

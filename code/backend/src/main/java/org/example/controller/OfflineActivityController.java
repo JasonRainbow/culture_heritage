@@ -8,6 +8,9 @@ import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author yt
+ */
 @Tag(name="线下活动",description = "线下活动相关接口")
 @RestController
 public class OfflineActivityController {

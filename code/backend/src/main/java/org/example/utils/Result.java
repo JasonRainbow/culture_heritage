@@ -8,6 +8,7 @@ import org.example.common.ResponseStatusEnum;
 import java.util.HashMap;
 
 /**
+ * @author hzx
  * 响应消息
  */
 @ApiModel(value = "响应结果实体", description = "响应结果实体")

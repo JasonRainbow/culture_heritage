@@ -88,7 +88,6 @@ export default {
     //获取用户个人信息
     getUser() {
       this.user = parseLocalStorageItem("user")
-      console.log(this.user)
     },
     logout() {
       this.$confirm('退出登录, 是否继续?', '提示', {

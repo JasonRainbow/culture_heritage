@@ -132,10 +132,14 @@ router.beforeEach((to, from, next) => {
       query: {redirect: to.fullPath}
     })
   }*/
+  const user = store.state.user
   if(to.path !== '/personal'){
-    next()
+    if (to.path === "/not-login" && user) {
+      next("/personal")
+    } else {
+      next()
+    }
   }else{
-    const user = store.state.user
     if(user === ''){  // 用户未登录
       next('/not-login')
     }else{

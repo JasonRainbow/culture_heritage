@@ -2,6 +2,9 @@ package org.example.service;
 
 import org.example.utils.Result;
 
+/**
+ * @author yt
+ */
 public interface ForumService {
     /**
      * 获取所有的论坛信息

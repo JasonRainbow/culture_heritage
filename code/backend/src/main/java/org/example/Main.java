@@ -11,6 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
+/**
+ * @author yt
+ */
 @MapperScan("org.example.mapper")
 @PropertySource(value = "classpath:application.yaml", encoding = "UTF-8")
 @SpringBootApplication

@@ -13,6 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+/**
+ * @author yt
+ */
 @Tag(name="用户",description = "用户相关接口")
 @RestController
 @RequestMapping("/user")

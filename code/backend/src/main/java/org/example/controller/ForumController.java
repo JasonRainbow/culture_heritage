@@ -5,11 +5,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.service.ForumService;
 import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author yt
+ */
 @Tag(name="论坛",description = "论坛相关接口")
 @RestController
 public class ForumController {
@@ -18,9 +18,10 @@ public class ForumController {
     ForumService forumService;
 
     @Operation(summary = "查询", description = "分页查询所有论坛")
-    @RequestMapping("/getAllForum/{pageSize}/{pageNumber}")
-    public Result getAllForum(@PathVariable("pageSize") Integer pageSize, @PathVariable("pageNumber") Integer pageNumber){
-        return forumService.getAllForum(pageSize, pageNumber);
+    @GetMapping("/getAllForum")
+    public Result getAllForum(@RequestParam(name = "pageNum", defaultValue = "1", required = false) Integer pageNum,
+                              @RequestParam(name = "pageSize", defaultValue = "10", required = false) Integer pageSize){
+        return forumService.getAllForum(pageSize, pageNum);
     }
 
 
