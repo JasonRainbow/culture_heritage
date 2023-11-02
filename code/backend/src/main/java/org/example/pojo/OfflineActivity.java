@@ -9,6 +9,8 @@ import lombok.Data;
 @Builder
 @TableName("offlineexperience")
 public class OfflineActivity {
+    @TableField("activityId")
+    private Integer activityId;
     @TableField("cultureId")
     private Integer cultureId;
     @TableField("contactId")
@@ -26,4 +28,5 @@ public class OfflineActivity {
     @TableField("praiseNumber")
     private Integer praiseNumber;
     private Integer status;
+    private String detail;
 }

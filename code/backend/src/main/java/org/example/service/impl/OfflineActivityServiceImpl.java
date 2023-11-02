@@ -34,6 +34,7 @@ public class OfflineActivityServiceImpl implements OfflineActivityService {
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
         map.put("records", page.getRecords());
+        map.put("totalPage",(page.getTotal()+page.getSize()-1)/page.getSize());
         return Result.success(map);
     }
 }

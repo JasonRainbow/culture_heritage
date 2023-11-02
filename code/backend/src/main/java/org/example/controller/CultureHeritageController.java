@@ -15,8 +15,8 @@ public class CultureHeritageController {
     CultureHeritageService cultureHeritageService;
 
     @Operation(summary = "查询", description = "分页查询所有文化遗产")
-    @GetMapping("getAllHeritageByPage/{pageSize}/{pageNumber}")
-    public Result getAllHeritageByPage(@PathVariable("pageSize") Integer pageSize, @PathVariable("pageNumber") Integer pageNumber){
+    @GetMapping("getAllHeritageByPage")
+    public Result getAllHeritageByPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNumber") Integer pageNumber){
         return cultureHeritageService.getAllHeritageByPage(pageSize, pageNumber);
     }
 
