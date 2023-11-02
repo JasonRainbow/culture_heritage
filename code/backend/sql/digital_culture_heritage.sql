@@ -1,64 +1,85 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : chuchcen
+ Source Server         : mysql
  Source Server Type    : MySQL
- Source Server Version : 80016
+ Source Server Version : 80031
  Source Host           : localhost:3306
  Source Schema         : digital_culture_heritage
 
  Target Server Type    : MySQL
- Target Server Version : 80016
+ Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 01/11/2023 17:38:43
+ Date: 02/11/2023 08:19:21
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
+-- Table structure for activity_promotion_apply
+-- ----------------------------
+DROP TABLE IF EXISTS `activity_promotion_apply`;
+CREATE TABLE `activity_promotion_apply`  (
+  `userId` int(0) NOT NULL COMMENT '用户id',
+  `activityName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动名',
+  `activityArea` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动地点',
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id，自增主键',
+  `activityTime` datetime(0) NULL DEFAULT NULL COMMENT '活动时间',
+  `promotionalWebsite` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动宣传网址',
+  `activityIntroduction` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动介绍',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of activity_promotion_apply
+-- ----------------------------
+INSERT INTO `activity_promotion_apply` VALUES (1, '师大之星', '励德楼', 1, '2023-11-11 08:00:00', 'http://www.hunnu.edu.cn', '非常好');
+
+-- ----------------------------
 -- Table structure for comment
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
-  `commentId` int(50) NOT NULL AUTO_INCREMENT COMMENT '评论id',
-  `cultureId` int(20) UNSIGNED NOT NULL COMMENT '讨论的技艺类型',
+  `commentId` int(0) NOT NULL AUTO_INCREMENT COMMENT '评论id',
+  `cultureId` int(0) UNSIGNED NOT NULL COMMENT '讨论的技艺类型',
   `releaseTime` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论时间',
   `summary` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论摘要',
   `picture` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论的图片',
   `more` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '“查看更多”的url',
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '论坛的标题',
   PRIMARY KEY (`commentId`) USING BTREE,
   INDEX `cultureId`(`cultureId`) USING BTREE,
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`cultureId`) REFERENCES `culture` (`cultureId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
 -- ----------------------------
-INSERT INTO `comment` VALUES (1, 2, '2023年12月17日', '邵阳蓝印花布又称豆浆布，是一种用石灰豆浆防染花靛蓝色的双色布。深重的蓝，纯净的白，质朴的色彩，古拙的纹样，显现出浓烈的乡土气息。邵阳蓝印花布源自远古时代苗族、瑶族人的“阑干斑布”和“蜡缬”。', '', NULL);
-INSERT INTO `comment` VALUES (2, 5, '2023年10月23日', '苗族银饰锻制技艺历史悠久，先后经历了从原始装饰品到岩石贝壳装饰品、从植物花卉饰品到金银饰品的演进历程，传承延续下来，才有了模式和形态基本定型的银饰，其品种式样至今还在不断地翻新，由此形成的饰品链条成为苗族社会演进的象征之一。', 'https://cn.bing.com/images/search?view=detailV2&ccid=8W98Rcey&id=86183A3A2889FA822607A514760954D47831063D&thid=OIP.8W98RceyWjgjP9tAcT7EpQHaGE&mediaurl=https%3a%2f%2fp1.ssl.qhmsg.com%2ft0191d5eee538bac1e4.jpg&exph=655&expw=800&q=%e8%8b%97%e6%97%8f%e9%93%b6%e9%a5%b0&simid=608051976812515528&FORM=IRPRST&ck=D6C03BF90BCF7360038FF97F2DC93467&selectedIndex=3&ajaxhist=0&ajaxserp=0', 'https://www.ihchina.cn/art/detail/id/9874.html');
-INSERT INTO `comment` VALUES (3, 10, '2023年11月08日', '醴陵釉下五彩瓷烧制技艺，从原料制作到产品烧成要经过近百道工序，全部靠手工完成，突破了釉下单彩的传统工艺，调配出丰富多彩的陶瓷绘画色料，讲究淡雅用色的表现手法，采用双勾分水的独特技法，烧制成的瓷器釉面晶莹润泽、釉胎白泛青，近乎写真效果。', 'https://cn.bing.com/images/search?view=detailV2&ccid=NzAKOgMl&id=23DF1595BC472CB74186515D46EDA7916DD66FDA&thid=OIP.NzAKOgMlM2nnNQXKYsD9uwHaKc&mediaurl=https%3a%2f%2fimg1.artron.net%2fauction%2f2016%2fart509672%2fd%2fart5096726325.jpg&exph=2000&expw=1418&q=%e9%86%b4%e9%99%b5%e9%87%89%e4%b8%8b%e4%ba%94%e5%bd%a9%e7%93%b7&simid=608030008059395887&FORM=IRPRST&ck=2F812E7CBACBA87647CC9F095D429EF8&selectedIndex=1&ajaxhist=0&ajaxserp=0', 'https://baijiahao.baidu.com/s?id=1669438379411300840');
-INSERT INTO `comment` VALUES (4, 8, '2023年9月15日', '岳州扇是中国三大名扇之一，始于明末清初。岳州扇以湖南本地产的优质竹子为扇骨，牛角为钉，宣纸为面，就制作技艺来说，分扇骨和扇面制作两大程序，包括锯筒、劈片、边骨推青、小骨推青、镶边骨、取边、打磨、钻眼等72道工序。', 'https://cn.bing.com/images/search?view=detailV2&ccid=M5SKnRuh&id=4C6798D996B207BB36309B5C40038EA3B8143887&thid=OIP.M5SKnRuheekYu-QGsmdJCQHaE6&mediaurl=https%3a%2f%2fts1.cn.mm.bing.net%2fth%2fid%2fR-C.33948a9d1ba179e918bbe406b2674909%3frik%3dhzgUuKOOA0Bcmw%26riu%3dhttp%253a%252f%252fwww.szfan.com%252fuploadfiles%252fpictures%252fnews%252f20170712085508_5840.jpg%26ehk%3dPTJSBeNdR%252fm%252fkvhU39oFSsjlpwnljZHUS7tcjeDWbpw%253d%26risl%3d%26pid%3dImgRaw%26r%3d0%26sres%3d1%26sresct%3d1%26srh%3d799%26srw%3d1205&exph=365&expw=550&q=%e5%b2%b3%e5%b7%9e%e6%89%87&simid=608000196636463372&FORM=IRPRST&ck=57CFCC5FE58F31434E8E2607312AC4FF&selectedIndex=4&ajaxhist=0&ajaxserp=0', 'http://www.xinhuanet.com/culture/20220701/7ac919e400a845bca7b6ae1ed12691cb/c.html');
+INSERT INTO `comment` VALUES (1, 2, '2023年12月17日', '邵阳蓝印花布又称豆浆布，是一种用石灰豆浆防染花靛蓝色的双色布。深重的蓝，纯净的白，质朴的色彩，古拙的纹样，显现出浓烈的乡土气息。邵阳蓝印花布源自远古时代苗族、瑶族人的“阑干斑布”和“蜡缬”。', 'https://pic1.zhimg.com/v2-21f4ca97ec88cb23b77119eb2c117e5d_r.jpg', 'https://sy.rednet.cn/content/2019/12/17/6381470.html', '蓝印花布技艺');
+INSERT INTO `comment` VALUES (2, 5, '2023年10月23日', '苗族银饰锻制技艺历史悠久，先后经历了从原始装饰品到岩石贝壳装饰品、从植物花卉饰品到金银饰品的演进历程，传承延续下来，才有了模式和形态基本定型的银饰，其品种式样至今还在不断地翻新，由此形成的饰品链条成为苗族社会演进的象征之一。', 'https://www.cdstm.cn/gallery/media/mkjx/shijieyichan/201806/W020180627569165446292.jpg', 'https://www.ihchina.cn/art/detail/id/9874.html', '苗族银饰锻制技艺');
+INSERT INTO `comment` VALUES (3, 10, '2023年11月08日', '醴陵釉下五彩瓷烧制技艺，从原料制作到产品烧成要经过近百道工序，全部靠手工完成，突破了釉下单彩的传统工艺，调配出丰富多彩的陶瓷绘画色料，讲究淡雅用色的表现手法，采用双勾分水的独特技法，烧制成的瓷器釉面晶莹润泽、釉胎白泛青，近乎写真效果。', 'http://www.zhongguociwang.com/upload/2017-09/17091714359793.jpg', 'https://baijiahao.baidu.com/s?id=1669438379411300840', '醴陵釉下五彩瓷烧制技艺');
+INSERT INTO `comment` VALUES (4, 8, '2023年9月15日', '岳州扇是中国三大名扇之一，始于明末清初。岳州扇以湖南本地产的优质竹子为扇骨，牛角为钉，宣纸为面，就制作技艺来说，分扇骨和扇面制作两大程序，包括锯筒、劈片、边骨推青、小骨推青、镶边骨、取边、打磨、钻眼等72道工序。', 'http://www.yyx.gov.cn/uploadfiles/202012/20201223151708593.png', 'http://www.xinhuanet.com/culture/20220701/7ac919e400a845bca7b6ae1ed12691cb/c.html', '制扇技艺（岳州扇制作技艺）');
 
 -- ----------------------------
 -- Table structure for culture
 -- ----------------------------
 DROP TABLE IF EXISTS `culture`;
 CREATE TABLE `culture`  (
-  `cultureId` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增编号',
+  `cultureId` int(0) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增编号',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '非物质文化遗产名称',
   `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '非物质文化遗产类别',
   `kind` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '非物质文化遗产类型',
   `announcementTime` year NULL DEFAULT NULL COMMENT '公布时间',
-  `productNumber` int(11) NOT NULL COMMENT '国家非遗项目序号',
+  `productNumber` int(0) NOT NULL COMMENT '国家非遗项目序号',
   `declaringUnit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '非遗申报单位',
   `protectionUnit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '非遗保护单位',
   `introduction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '介绍',
   `model` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '3d模型url',
-  `topic` int(5) NULL DEFAULT 0 COMMENT '是否是热点文化，1表示“是”；0表示“否”',
+  `topic` int(0) NULL DEFAULT 0 COMMENT '是否是热点文化，1表示“是”；0表示“否”',
   PRIMARY KEY (`cultureId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of culture
@@ -88,24 +109,24 @@ INSERT INTO `culture` VALUES (19, '小吃制作技艺（火宫殿臭豆腐制作
 -- ----------------------------
 DROP TABLE IF EXISTS `offlineexperience`;
 CREATE TABLE `offlineexperience`  (
-  `activityId` int(20) NOT NULL AUTO_INCREMENT COMMENT '所有文化的线下活动的编号',
-  `cultureId` int(20) UNSIGNED NOT NULL COMMENT '活动对应的非遗文化编号，和culture关联',
-  `contactId` int(11) NOT NULL COMMENT '联系人编号，和user关联',
+  `activityId` int(0) NOT NULL AUTO_INCREMENT COMMENT '所有文化的线下活动的编号',
+  `cultureId` int(0) UNSIGNED NOT NULL COMMENT '活动对应的非遗文化编号，和culture关联',
+  `contactId` int(0) NOT NULL COMMENT '联系人编号，和user关联',
   `activityName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺名字/活动名称',
   `tradeName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '主办方/公司名称',
   `businessHours` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺营业时间/活动举办时间',
   `venue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺/活动举办实际地点',
   `introduction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '店铺/活动介绍',
   `activityPhoto` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动图片/宣传片的url',
-  `praiseNumber` int(10) UNSIGNED NULL DEFAULT NULL COMMENT '点赞数',
-  `status` int(2) UNSIGNED NULL DEFAULT 2 COMMENT '当前活动/店铺的状态，1正常，2待审批，3已结束。默认待审批',
+  `praiseNumber` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '点赞数',
+  `status` int(0) UNSIGNED NULL DEFAULT 2 COMMENT '当前活动/店铺的状态，1正常，2待审批，3已结束。默认待审批',
   `detail` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动详情网址url',
   PRIMARY KEY (`activityId`) USING BTREE,
   INDEX `cultureId`(`cultureId`) USING BTREE,
   INDEX `contactId`(`contactId`) USING BTREE,
   CONSTRAINT `offlineexperience_ibfk_1` FOREIGN KEY (`cultureId`) REFERENCES `culture` (`cultureId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `offlineexperience_ibfk_2` FOREIGN KEY (`contactId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of offlineexperience
@@ -118,15 +139,15 @@ INSERT INTO `offlineexperience` VALUES (2, 1, 1, '张家界-精美技艺土家�
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
-  `role` int(5) NOT NULL DEFAULT 3 COMMENT '用户角色，1表示系统管理员，2表示消费者，3是普通用户',
+  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `role` int(0) NOT NULL DEFAULT 3 COMMENT '用户角色，1表示系统管理员，2表示消费者，3是普通用户',
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户的登录账号，唯一',
   `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户的姓名',
   `password` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户的登录密码',
   `workUnit` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户的工作单位',
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户的电子邮箱',
   `phone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户的手机号码',
-  `balance` int(10) NULL DEFAULT NULL COMMENT '消费者的余额',
+  `balance` int(0) NULL DEFAULT NULL COMMENT '消费者的余额',
   `avatar` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户的头像url',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `unique_user_u`(`username`) USING BTREE
