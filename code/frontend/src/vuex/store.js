@@ -6,9 +6,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     user: "",
-    token: "" // 从cookie中获取token
+    token: "", // 从cookie中获取token
+    modelUri: "assets/model1/scene.gltf"
   },
   mutations: {
+    SET_MODEL_URI(state, uri) {
+      state.modelUri = uri
+    },
   },
   actions: {
   },

@@ -4,11 +4,13 @@
       <el-col :span="6" :xs="24" align="center" style="margin-top: 20px" v-for="item in list_data" :key="item.id">
         <el-card :body-style="{ padding: '0px' }">
           <div class="bottom clearfix">
-            <span style="float: left; margin-left: 20px; margin-top: 10px">{{item.name}}</span>
+            <span class="modelName">{{item.modelName}}</span>
             <el-button style="float: right; margin-right: 20px; margin-top: 10px"
-                       size="small" type="primary" class="button" @click="handleClick(item.id)">体验</el-button>
+                       size="small" type="primary" class="button" @click="handleClick(item.modelUri)">体验</el-button>
           </div>
-          <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+
+          <model-viewer :src="item.modelUri" alt="VR Headset" auto-rotate auto-rotate-delay="1500" camera-controls ar ios-src="assets/scene.gltf"></model-viewer>
+
           <div style="padding: 14px;">
             <span class="my-icon">
               <i class="el-icon-thumb"></i>{{item.likes}}
@@ -19,71 +21,53 @@
         </el-card>
       </el-col>
     </el-row>
+
   </div>
 </template>
 
 <script>
+import {ModelViewer} from "@google/model-viewer"
+import {getDigitalCultureHeritageByPage} from "@/api/digital_culture_heritage_api";
 export default {
   name: "VirtualExperience",
+  components: {
+    ModelViewer
+  },
   data() {
     return {
+      query_params: {
+        pageNum: 1,
+        pageSize: 10
+      },
       list_data: [
         {
           id: 1,
-          name: "铜官窑制作",
+          modelName: "铜官窑制作",
           description: "",
-          imgUri: "",
+          modelUri: "assets/model1/scene.gltf",
           likes: 10,
         },
-        {
-          id: 2,
-          name: "铜官窑制作",
-          description: "",
-          imgUri: "",
-          likes: 10,
-        },
-        {
-          id: 3,
-          name: "铜官窑制作",
-          description: "",
-          imgUri: "",
-          likes: 10,
-        },
-        {
-          id: 4,
-          name: "铜官窑制作",
-          description: "",
-          imgUri: "",
-          likes: 10,
-        },
-        {
-          id: 5,
-          name: "铜官窑制作",
-          description: "",
-          imgUri: "",
-          likes: 10,
-        },
-        {
-          id: 6,
-          name: "铜官窑制作",
-          description: "",
-          imgUri: "",
-          likes: 10,
-        },
-        {
-          id: 7,
-          name: "铜官窑制作",
-          description: "",
-          imgUri: "",
-          likes: 10,
-        },
+
       ]
     }
   },
   methods: {
-    handleClick(id) {
-      console.log(id)
+    handleClick(modelUri) {
+      this.$store.commit("SET_MODEL_URI", modelUri)
+      this.$router.push("/big-screen")
+    },
+    getData() {
+      getDigitalCultureHeritageByPage(this.query_params).then((res)=>{
+        if (res.code === "0") {
+          this.list_data = res.data.records
+          console.log(this.list_data)
+        }
+      })
     }
+  },
+  created() {
+    console.log("hhh")
+    this.getData()
   }
 }
 </script>
@@ -100,5 +84,15 @@ export default {
 
 .my-icon {
   margin-right: 80px;
+}
+
+.modelName {
+  display: inline-block;
+  max-width: 180px;
+  max-height: 20px;
+  overflow: hidden;
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px
 }
 </style>

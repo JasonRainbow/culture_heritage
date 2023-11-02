@@ -14,6 +14,7 @@ import OffLineActivity from "@/views/user/OffLineActivity";
 import ActivityApply from "@/views/user/ActivityApply";
 import VirtualExperience from "@/views/user/VirtualExperience";
 import Forum from "@/views/user/Forum.vue";
+import DisplayModel from "@/views/user/DisplayModel";
 
 // 启用路由
 Vue.use(Router);
@@ -38,6 +39,18 @@ const router = new Router({
       hidden: true,
       meta: {
         title: '用户注册',
+        requireAuth: false
+      }
+    },
+    {
+      path: '/big-screen',
+      name: '模型大屏展示',
+      component: DisplayModel,
+      props: {
+
+      },
+      meta: {
+        title: '模型大屏展示',
         requireAuth: false
       }
     },
