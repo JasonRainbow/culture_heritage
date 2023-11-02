@@ -94,8 +94,7 @@ export default {
     }
   },
   created() {
-    this.$store.commit('activity/updateActivityArr', this.activityArr)
-    console.log(this.$store.state.activity.activityArr.length)
+
   },
   mounted(){
     getAllOfflineActivityByPage(this.searchParams).then(res=>{
