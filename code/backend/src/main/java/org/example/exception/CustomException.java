@@ -7,7 +7,7 @@ import org.example.common.CommonResp;
  */
 public class CustomException extends RuntimeException implements CommonResp {
 
-    private final CommonResp commonResp;
+    private transient final CommonResp commonResp;
 
     public CustomException(CommonResp commonResp) {
         super();  // 调用父类的无参构造方法

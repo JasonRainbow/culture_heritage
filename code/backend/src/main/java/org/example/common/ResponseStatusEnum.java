@@ -39,6 +39,8 @@ public enum ResponseStatusEnum implements CommonResp{
     NAME_EMPTY("1021", "用户昵称为空"),
     UPDATE_PASSWORD_EMPTY("1022","修改密码为空"),
 
+    MD5_ENCRYPT_ERROR("1023", "MD5加密出错"),
+
 
 
     /** 20XX 表示服务器错误 */

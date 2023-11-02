@@ -34,7 +34,7 @@ public class OfflineActivityServiceImpl implements OfflineActivityService {
     public Result getAllOfflineActivityByPage(Integer pageSize, Integer pageNumber) {
         IPage<OfflineActivity> page =new Page<>(pageNumber, pageSize);
         offlineActivityMapper.selectPage(page,null);
-        Map map = new HashMap(5);
+        Map<String, Object> map = new HashMap<>(5);
         map.put("current",page.getCurrent());
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
@@ -50,7 +50,6 @@ public class OfflineActivityServiceImpl implements OfflineActivityService {
         }
         offlineActivity.setCultureId(1);
         offlineActivity.setIsPassed(0);
-        System.out.println(offlineActivity);
         int rows = offlineActivityMapper.insert(offlineActivity);
         if(rows>0){
             return Result.success();

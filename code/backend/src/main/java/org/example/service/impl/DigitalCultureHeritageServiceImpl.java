@@ -19,9 +19,8 @@ public class DigitalCultureHeritageServiceImpl implements DigitalCultureHeritage
 
     @Override
     public Page<DigitalCultureHeritage> findAllByPage(int pageNum, int pageSize) {
-        Page<DigitalCultureHeritage> result = digitalCultureHeritageMapper.selectPage(new Page<>(pageNum, pageSize),
-                new QueryWrapper<>());
 
-        return result;
+        return digitalCultureHeritageMapper.selectPage(new Page<>(pageNum, pageSize),
+                new QueryWrapper<>());
     }
 }

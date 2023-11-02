@@ -60,11 +60,15 @@ public class Result {
         return Result.success(null);
     }
 
-    public static Result success(String code, String msg) {
+    private static Result info(String code, String msg) {
         Result result = new Result();
         result.setCode(code);
         result.setMsg(msg);
         return result;
+    }
+
+    public static Result success(String code, String msg) {
+        return info(code, msg);
     }
 
     public static Result success(Object data) {
@@ -75,10 +79,7 @@ public class Result {
     }
 
     public static Result error(String code, String msg) {
-        Result result = new Result();
-        result.setCode(code);
-        result.setMsg(msg);
-        return result;
+        return info(code, msg);
     }
 
     public static Result error(ResponseStatusEnum responseStatusEnum, Object data) {
