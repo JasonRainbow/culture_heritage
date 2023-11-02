@@ -63,4 +63,12 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
     public List<CultureHeritageDistributeVO> getCultureHeritageDistribute() {
         return cultureHeritageMapper.selectCultureHeritageDistribute();
     }
+
+    @Override
+    public Page<CultureHeritage> getHotHeritageByPage(int pageNum, int pageSize) {
+        QueryWrapper<CultureHeritage> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("topic", 1);
+
+        return cultureHeritageMapper.selectPage(new Page<>(pageNum, pageSize), queryWrapper);
+    }
 }

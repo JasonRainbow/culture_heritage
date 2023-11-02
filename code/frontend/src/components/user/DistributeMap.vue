@@ -5,6 +5,7 @@
 
 <script>
 import jsonData from "../../assets/data/hunan_map.json"
+import {searchHeritageDistribute} from "@/api/search_culture_heritage";
 
 export default {
   name: "DistributeMap",
@@ -23,83 +24,20 @@ export default {
     return {
       screenWidth: 1536,
       dataList: [
-        {
-          name: "常德市",
-          num: 3,
-          value: 0
-        },
-        {
-          name: "郴州市",
-          num: 4,
-          value: 0
-        },
-        {
-          name: "衡阳市",
-          num: 1,
-          value: 0
-        },
-        {
-          name: "怀化市",
-          num: 1,
-          value: 0
-        },{
-          name: "娄底市",
-          num: 4,
-          value: 0
-        },
-        {
-          name: "邵阳市",
-          num: 2,
-          value: 0
-        },
-        {
-          name: "湘潭市",
-          num: 1,
-          value: 0
-        },
-        {
-          name: "湘西土家族苗族自治州",
-          num: 10,
-          value: 0
-        },
-        {
-          name: "益阳市",
-          num: 1,
-          value: 0
-        },
-        {
-          name: "永州市",
-          num: 1,
-          value: 0
-        },
-        {
-          name: "岳阳市",
-          num: 0,
-          value: 0
-        },
-        {
-          name: "张家界市",
-          num: 1,
-          value: 0
-        },
-        {
-          name: "长沙市",
-          num: 1,
-          value: 0
-        },
-        {
-          name: "株洲市",
-          num: 2,
-          value: 0
-        },
-      ]
+
+      ],
+      search_data: []
     }
   },
   methods: {
     initWorldMapChart(){
       let sum = 0
-      this.dataList.map((item)=>{
+      this.search_data.map((item)=>{
         sum += item.num;
+        this.dataList.push({
+          name: item.cityName,
+          num: item.num
+        })
       })
       for(let i = 0; i < this.dataList.length; i++){
         this.dataList[i].value = Math.round(this.dataList[i].num / sum * 100)
@@ -202,9 +140,17 @@ export default {
       this.$echarts.registerMap('world', jsonData)
       this.worldMapChart.setOption(this.option);
     },
+    getData() {
+      searchHeritageDistribute().then((res)=>{
+        if (res.code === "0") {
+          this.search_data = res.data
+          this.initWorldMapChart()
+        }
+      })
+    },
   },
   mounted() {
-    this.initWorldMapChart()
+    this.getData()
     window.addEventListener('resize', ()=>{
       this.screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
       this.worldMapChart.resize();

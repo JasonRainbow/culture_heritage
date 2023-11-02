@@ -32,4 +32,11 @@ public class CultureHeritageController {
     public Result searchDistribute(){
         return Result.success(cultureHeritageService.getCultureHeritageDistribute());
     }
+
+    @Operation(summary = "搜索", description = "分页查询热点非物质文化遗产")
+    @GetMapping("/searchHotHeritage")
+    public Result searchHotHeritage(@RequestParam(name = "pageNum", defaultValue = "1", required = false) Integer pageNum,
+                                    @RequestParam(name = "pageSize", defaultValue = "5", required = false) Integer pageSize){
+        return Result.success(cultureHeritageService.getHotHeritageByPage(pageNum, pageSize));
+    }
 }

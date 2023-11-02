@@ -29,5 +29,6 @@ public class CultureHeritage {
     @TableField("protectionUnit")
     private String protectionUnit;
     private String introduction;
-    private String model;
+    private String citeUrl;
+    private String imgUrl;
 }
