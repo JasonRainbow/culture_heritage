@@ -46,6 +46,9 @@ const router = new Router({
       path: '/big-screen',
       name: '模型大屏展示',
       component: DisplayModel,
+      props: {
+
+      },
       meta: {
         title: '模型大屏展示',
         requireAuth: false

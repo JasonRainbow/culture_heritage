@@ -9,8 +9,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 
 @MapperScan("org.example.mapper")
+@PropertySource(value = "classpath:application.yaml", encoding = "UTF-8")
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {

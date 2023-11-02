@@ -2,7 +2,6 @@ import axios from 'axios'
 import router from "@/router";
 import { Message, Loading, Notification } from 'element-ui'
 import { saveAs } from 'file-saver'
-import {getToken} from "./auth";
 import store from "../vuex/store";
 
 let errorCode = {
@@ -30,9 +29,6 @@ const request2 = axios.create({
 const whiteUrls = ["/login", '/loginAdmin',
   '/register'
   ]
-
-const userAuth = ["/user/pass", "/user/profile",
-  '/monitor-work/recommendByUserId', '/monitor-request/click-add']
 
 let downloadLoadingInstance;
 

@@ -13,7 +13,7 @@
               Model license: Sketcfab Standard
             -->
             <a-asset-item id="triceratops"
-                          src="assets/model1/scene.gltf"
+                          :src="modelUri"
                           response-type="arraybuffer" crossorigin="anonymous"></a-asset-item>
 
             <a-asset-item id="reticle"
@@ -38,6 +38,11 @@ export default {
   data() {
     return {
 
+    }
+  },
+  computed: {
+    modelUri() {
+      return this.$store.state.modelUri
     }
   },
   methods: {
