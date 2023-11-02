@@ -7,9 +7,9 @@
 
 
     <select id="searchAllPostTime" resultType="java.lang.String">
-        select announcementTime from culture
+        select DISTINCT announcementTime from culture
     </select>
     <select id="searchAllArea" resultType="java.lang.String">
-        select declaringUnit from culture
+        select DISTINCT declaringUnit from culture
     </select>
 </mapper>
