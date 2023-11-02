@@ -16,3 +16,8 @@ export const modify_user_password = (data)=>{
     return req("put", "/user/rpassword", null, data)
 }
 
+// 上传用户头像并保存
+export const uploadUserAvatar = (params)=>{
+    return req("put", "/user/uploadAvatar", null, params)
+}
+
