@@ -44,4 +44,9 @@ public class UserController {
 
     }
 
+    @Operation(summary = "修改", description = "上传并修改用户的头像")
+    @PutMapping("/uploadAvatar")
+    public Result uploadAvatar() {
+        return null;
+    }
 }
