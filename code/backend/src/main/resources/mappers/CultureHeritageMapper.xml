@@ -1,0 +1,20 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.example.mapper.CultureHeritageMapper">
+
+    <select id="selectCultureHeritageDistribute" resultType="org.example.pojo.CultureHeritageDistributeVO">
+        select cityName, num
+        from city left join (
+             select cityId, count(cityId) as num
+            from culture
+            group by cityId
+                 ) tmp
+        on city.cityId = tmp.cityId
+    </select>
+
+    <select id="searchAllPostTime" resultType="java.lang.String">
+        select DISTINCT announcementTime from culture
+    </select>
+    <select id="searchAllArea" resultType="java.lang.String">
+        select DISTINCT declaringUnit from culture
+    </select>
+</mapper>

@@ -2,6 +2,8 @@ package org.example.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.micrometer.common.util.StringUtils;
+import org.example.common.ResponseStatusEnum;
 import org.example.mapper.OfflineActivityMapper;
 import org.example.pojo.OfflineActivity;
 import org.example.service.OfflineActivityService;
@@ -34,6 +36,22 @@ public class OfflineActivityServiceImpl implements OfflineActivityService {
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
         map.put("records", page.getRecords());
+        map.put("totalPage",(page.getTotal()+page.getSize()-1)/page.getSize());
         return Result.success(map);
+    }
+
+    @Override
+    public Result activityPromotionApply(OfflineActivity offlineActivity) {
+        if(StringUtils.isBlank(String.valueOf(offlineActivity.getContactId()))){
+            return Result.error(ResponseStatusEnum.USERNAME_EMPTY);
+        }
+        offlineActivity.setCultureId(1);
+        offlineActivity.setIsPassed(0);
+        System.out.println(offlineActivity);
+        int rows = offlineActivityMapper.insert(offlineActivity);
+        if(rows>0){
+            return Result.success();
+        }
+        return Result.error(ResponseStatusEnum.ERROR);
     }
 }

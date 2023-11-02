@@ -2,7 +2,6 @@ package org.example.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.example.pojo.ActivityPromotionApply;
 import org.example.pojo.User;
 import org.example.pojo.UserPassword;
 import org.example.service.UserService;
@@ -45,8 +44,9 @@ public class UserController {
 
     }
 
-    @PostMapping("/activityPromotionApply")
-    public Result activityPromotionApply(@RequestBody ActivityPromotionApply activityPromotionApply){
-        return userService.activityPromotionApply(activityPromotionApply);
+    @Operation(summary = "修改", description = "上传并修改用户的头像")
+    @PutMapping("/uploadAvatar")
+    public Result uploadAvatar() {
+        return null;
     }
 }

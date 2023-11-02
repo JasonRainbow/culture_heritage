@@ -16,6 +16,3 @@ export const modify_user_password = (data)=>{
     return req("put", "/user/rpassword", null, data)
 }
 
-export const applyActivity = (data)=>{
-    return req("post", "/user/activityPromotionApply", null, data)
-}

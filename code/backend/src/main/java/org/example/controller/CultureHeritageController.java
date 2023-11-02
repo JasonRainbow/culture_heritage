@@ -15,8 +15,8 @@ public class CultureHeritageController {
     CultureHeritageService cultureHeritageService;
 
     @Operation(summary = "查询", description = "分页查询所有文化遗产")
-    @GetMapping("getAllHeritageByPage/{pageSize}/{pageNumber}")
-    public Result getAllHeritageByPage(@PathVariable("pageSize") Integer pageSize, @PathVariable("pageNumber") Integer pageNumber){
+    @GetMapping("getAllHeritageByPage")
+    public Result getAllHeritageByPage(@RequestParam("pageSize") Integer pageSize, @RequestParam("pageNumber") Integer pageNumber){
         return cultureHeritageService.getAllHeritageByPage(pageSize, pageNumber);
     }
 
@@ -25,5 +25,18 @@ public class CultureHeritageController {
     public Result searchHeritage(@RequestBody SearchHeritage searchHeritage){
 
         return cultureHeritageService.searchHeritage(searchHeritage);
+    }
+
+    @Operation(summary = "搜索", description = "查询非物质文化遗产的分布情况")
+    @GetMapping("/searchDistribute")
+    public Result searchDistribute(){
+        return Result.success(cultureHeritageService.getCultureHeritageDistribute());
+    }
+
+    @Operation(summary = "搜索", description = "分页查询热点非物质文化遗产")
+    @GetMapping("/searchHotHeritage")
+    public Result searchHotHeritage(@RequestParam(name = "pageNum", defaultValue = "1", required = false) Integer pageNum,
+                                    @RequestParam(name = "pageSize", defaultValue = "5", required = false) Integer pageSize){
+        return Result.success(cultureHeritageService.getHotHeritageByPage(pageNum, pageSize));
     }
 }

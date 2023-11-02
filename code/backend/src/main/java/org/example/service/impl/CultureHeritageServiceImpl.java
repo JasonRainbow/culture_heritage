@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.micrometer.common.util.StringUtils;
 import org.example.mapper.CultureHeritageMapper;
 import org.example.pojo.CultureHeritage;
+import org.example.pojo.CultureHeritageDistributeVO;
 import org.example.pojo.SearchHeritage;
 import org.example.service.CultureHeritageService;
 import org.example.utils.Result;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -21,6 +23,7 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
 
     @Autowired
     CultureHeritageMapper cultureHeritageMapper;
+
 
     @Override
     public Result getAllHeritageByPage(Integer pageSize, Integer pageNumber) {
@@ -31,6 +34,11 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
         map.put("records", page.getRecords());
+        map.put("totalPage",(page.getTotal()+page.getSize()-1)/page.getSize());
+        List postTimeList = cultureHeritageMapper.searchAllPostTime();
+        map.put("postTimeList",postTimeList);
+        List areaList = cultureHeritageMapper.searchAllArea();
+        map.put("areaList",areaList);
         return Result.success(map);
     }
 
@@ -47,6 +55,20 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
         map.put("records", page.getRecords());
+        map.put("totalPage",(page.getTotal()+page.getSize()-1)/page.getSize());
         return Result.success(map);
+    }
+
+    @Override
+    public List<CultureHeritageDistributeVO> getCultureHeritageDistribute() {
+        return cultureHeritageMapper.selectCultureHeritageDistribute();
+    }
+
+    @Override
+    public Page<CultureHeritage> getHotHeritageByPage(int pageNum, int pageSize) {
+        QueryWrapper<CultureHeritage> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("topic", 1);
+
+        return cultureHeritageMapper.selectPage(new Page<>(pageNum, pageSize), queryWrapper);
     }
 }
