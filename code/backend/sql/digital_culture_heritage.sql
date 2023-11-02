@@ -11,31 +11,11 @@
  Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 02/11/2023 10:32:05
+ Date: 02/11/2023 14:02:09
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for activity_promotion_apply
--- ----------------------------
-DROP TABLE IF EXISTS `activity_promotion_apply`;
-CREATE TABLE `activity_promotion_apply`  (
-  `userId` int(0) NOT NULL COMMENT '用户id',
-  `activityName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动名',
-  `activityArea` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动地点',
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id，自增主键',
-  `activityTime` datetime(0) NULL DEFAULT NULL COMMENT '活动时间',
-  `promotionalWebsite` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动宣传网址',
-  `activityIntroduction` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动介绍',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of activity_promotion_apply
--- ----------------------------
-INSERT INTO `activity_promotion_apply` VALUES (1, '师大之星', '励德楼', 1, '2023-11-11 08:00:00', 'http://www.hunnu.edu.cn', '非常好');
 
 -- ----------------------------
 -- Table structure for comment
@@ -121,6 +101,7 @@ CREATE TABLE `offlineexperience`  (
   `praiseNumber` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '点赞数',
   `status` int(0) UNSIGNED NULL DEFAULT 2 COMMENT '当前活动/店铺的状态，1正常，2待审批，3已结束。默认待审批',
   `detail` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动详情网址url',
+  `isPassed` tinyint(0) NULL DEFAULT NULL COMMENT '线下活动是否被管理员通过',
   PRIMARY KEY (`activityId`) USING BTREE,
   INDEX `cultureId`(`cultureId`) USING BTREE,
   INDEX `contactId`(`contactId`) USING BTREE,
@@ -131,8 +112,8 @@ CREATE TABLE `offlineexperience`  (
 -- ----------------------------
 -- Records of offlineexperience
 -- ----------------------------
-INSERT INTO `offlineexperience` VALUES (1, 2, 1, '体验古法蓝染制作', '染布公司', '8：00-17:00 ', '梅溪湖', '一块蓝染布，\r\n隐匿于扎染的千年时光，\r\n闻得见诗经的味道。\r\n蓝白两色创造了一个淳朴自然、\r\n千变万化的艺术世界。', 'https://img.alicdn.com/imgextra/i2/363098991/TB2ryYDX91I.eBjy0FjXXabfXXa_!!363098991.jpg', 2, 1, 'http://xhslink.com/mYuy4v');
-INSERT INTO `offlineexperience` VALUES (2, 1, 1, '张家界-精美技艺土家锦和砂石画', '张家界旅游商品产业园', '周一至周五10:00-16:00', '张家界永定区沙堤街道旅游商品产业园', '土家织锦文化创意园和军声砂石画文创园', 'https://www.xilankapu.com/wp-content/uploads/2020/07/1594808389-6edd4c48c4ad65b-748x1024.jpg', 3, 2, 'https://www.xiaohongshu.com/explore/63ccefd2000000001b01687c');
+INSERT INTO `offlineexperience` VALUES (1, 2, 1, '体验古法蓝染制作', '染布公司', '8：00-17:00 ', '梅溪湖', '一块蓝染布，\r\n隐匿于扎染的千年时光，\r\n闻得见诗经的味道。\r\n蓝白两色创造了一个淳朴自然、\r\n千变万化的艺术世界。', 'https://img.alicdn.com/imgextra/i2/363098991/TB2ryYDX91I.eBjy0FjXXabfXXa_!!363098991.jpg', 2, 1, 'http://xhslink.com/mYuy4v', 1);
+INSERT INTO `offlineexperience` VALUES (2, 1, 1, '张家界-精美技艺土家锦和砂石画', '张家界旅游商品产业园', '周一至周五10:00-16:00', '张家界永定区沙堤街道旅游商品产业园', '土家织锦文化创意园和军声砂石画文创园', 'https://www.xilankapu.com/wp-content/uploads/2020/07/1594808389-6edd4c48c4ad65b-748x1024.jpg', 3, 2, 'https://www.xiaohongshu.com/explore/63ccefd2000000001b01687c', 1);
 
 -- ----------------------------
 -- Table structure for user
@@ -156,7 +137,8 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 3, '张三', '过往烟云', 'e10adc3949ba59abbe56e057f20f883e', '湖南师范大学', '123456765@qq.com', '13135475865', NULL, '');
+INSERT INTO `user` VALUES (1, 3, '张三', '过往烟云2', '', '湖南师范大学', '726354856@qq.com', '13135475865', NULL, '');
 INSERT INTO `user` VALUES (2, 2, '李四', '雨纷纷', '123456', '湘西染布有限公司', '9995555123@qq.com', '13587946534', 30, NULL);
+INSERT INTO `user` VALUES (77, 3, '王五', '过往烟云2', 'e10adc3949ba59abbe56e057f20f883e', '湖南师范大学', '123456765@qq.com', '13135475865', NULL, '');
 
 SET FOREIGN_KEY_CHECKS = 1;

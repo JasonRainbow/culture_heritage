@@ -5,7 +5,6 @@ import io.micrometer.common.util.StringUtils;
 import org.example.common.ResponseStatusEnum;
 import org.example.exception.CustomException;
 import org.example.mapper.UserMapper;
-import org.example.pojo.ActivityPromotionApply;
 import org.example.pojo.User;
 import org.example.pojo.UserPassword;
 import org.example.service.UserService;
@@ -74,14 +73,6 @@ public class UserServiceImpl implements UserService {
         return Result.error(ResponseStatusEnum.PASSWORD_ERROR);
     }
 
-    @Override
-    public Result activityPromotionApply(ActivityPromotionApply activityPromotionApply) {
-        int rows = userMapper.insertActivityPromotionApply(activityPromotionApply);
-        if(rows >0){
-            return Result.success();
-        }
-        return Result.error(ResponseStatusEnum.ERROR);
-    }
 
     public void validate(String username, String password) {
         if (StringUtils.isBlank(username)) {
@@ -114,24 +105,26 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+    public void validate(String username) {
+        if(StringUtils.isBlank(username)){
+            throw new CustomException(ResponseStatusEnum.NAME_EMPTY);
+        }
+
+    }
 
     @Override
     public Result update(User user) {
-        validate(user.getUsername(), user.getPassword());
+        validate(user.getUsername());
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username",user.getUsername());
         User user1 = userMapper.selectOne(queryWrapper);
         if(user1==null){
             return Result.error(ResponseStatusEnum.USER_ACCOUNT_NOT_EXIST);
         }
-        if(user1.getPassword().equals(MD5Util.encrypt(user.getPassword()))){
-            user.setPassword(MD5Util.encrypt(user.getPassword()));
-            int count = userMapper.update(user,queryWrapper);
-            if(count>0){
-                return Result.success("0","修改个人信息成功");
-            }
-            return Result.error(ResponseStatusEnum.UPDATE_USER_INFO_FAILED);
+        int count = userMapper.update(user,queryWrapper);
+        if(count>0){
+            return Result.success("0","修改个人信息成功");
         }
-        return Result.error(ResponseStatusEnum.USERNAME_PASSWORD_ERROR);
+        return Result.error(ResponseStatusEnum.ERROR);
     }
 }
