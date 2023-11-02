@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.micrometer.common.util.StringUtils;
 import org.example.mapper.CultureHeritageMapper;
 import org.example.pojo.CultureHeritage;
+import org.example.pojo.CultureHeritageDistributeVO;
 import org.example.pojo.SearchHeritage;
 import org.example.service.CultureHeritageService;
 import org.example.utils.Result;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -48,5 +50,10 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
         map.put("size",page.getSize());
         map.put("records", page.getRecords());
         return Result.success(map);
+    }
+
+    @Override
+    public List<CultureHeritageDistributeVO> getCultureHeritageDistribute() {
+        return cultureHeritageMapper.selectCultureHeritageDistribute();
     }
 }

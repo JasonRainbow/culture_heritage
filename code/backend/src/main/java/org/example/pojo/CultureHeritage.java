@@ -14,6 +14,12 @@ public class CultureHeritage {
     private String name;
     private String category;
     private String kind;
+
+    /**
+     * 非物质文化遗产所属的地级市
+     */
+    private Integer cityId;
+
     @TableField("announcementTime")
     private String announcementTime;
     @TableField("productNumber")

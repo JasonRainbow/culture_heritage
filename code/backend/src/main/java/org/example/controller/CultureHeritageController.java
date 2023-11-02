@@ -26,4 +26,10 @@ public class CultureHeritageController {
 
         return cultureHeritageService.searchHeritage(searchHeritage);
     }
+
+    @Operation(summary = "搜索", description = "查询非物质文化遗产的分布情况")
+    @GetMapping("/searchDistribute")
+    public Result searchDistribute(){
+        return Result.success(cultureHeritageService.getCultureHeritageDistribute());
+    }
 }

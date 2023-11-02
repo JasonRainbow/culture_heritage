@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.example.mapper.CultureHeritageMapper">
+
+    <select id="selectCultureHeritageDistribute" resultType="org.example.pojo.CultureHeritageDistributeVO">
+        select cityName, num
+        from city left join (
+             select cityId, count(cityId) as num
+            from culture
+            group by cityId
+                 ) tmp
+        on city.cityId = tmp.cityId
+    </select>
+</mapper>
