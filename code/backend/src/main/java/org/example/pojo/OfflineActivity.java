@@ -30,5 +30,5 @@ public class OfflineActivity {
     private Integer status;
     private String detail;
     @TableField("isPassed")
-    private Integer isPassed=0;
+    private Integer isPassed;
 }
