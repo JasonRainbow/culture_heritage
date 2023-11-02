@@ -80,10 +80,6 @@ export default {
       resizeHandler: null
     };
   },
-  created() {
-    // console.log(this.options.img)
-    // console.log(this.$store.state.admin)
-  },
   methods: {
     // 编辑头像
     editCropper() {
@@ -134,14 +130,10 @@ export default {
     // 上传图片
     uploadImg() {
       this.$refs.cropper.getCropBlob(data => {
-        console.log(111)
         let formData = new FormData();
         console.log(data)
         formData.append("file", data);
-        formData.append("id", 1)
-        console.log(formData)
-
-        // console.log(data)
+        formData.append("id", this.$store.state.user.id)
         this.$store.dispatch("uploadAvatar", formData).then((res)=>{
           if (res.code === "0") {
             this.open = false

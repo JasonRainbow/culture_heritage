@@ -26,6 +26,7 @@ export default new Vuex.Store({
       const password = userInfo.password
       return new Promise((resolve,reject)=>{
         user_login({username,password}).then((res)=> {
+          console.log("登录返回数据："+res)
           setLocalStorageItem("user",res.data)
           commit('SET_USER', res.data)
           resolve()
@@ -40,7 +41,7 @@ export default new Vuex.Store({
           console.log(res)
           if (res.code === "0") {
             let store_user = state.user
-            store_user.avatar = res.data
+            store_user.avatar = res.data.avatar
             setLocalStorageItem("user", store_user)
             commit("SET_USER", store_user)
             Message.success("修改头像成功");

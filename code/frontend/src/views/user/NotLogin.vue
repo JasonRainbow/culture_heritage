@@ -14,7 +14,5 @@ export default {
   name: "NotLogin"
 }
 </script>
-
 <style scoped>
-
 </style>
