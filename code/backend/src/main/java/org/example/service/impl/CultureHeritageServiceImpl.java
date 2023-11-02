@@ -1,5 +1,6 @@
 package org.example.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -28,7 +29,9 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
     @Override
     public Result getAllHeritageByPage(Integer pageSize, Integer pageNumber) {
         IPage<CultureHeritage> page =new Page<>(pageNumber, pageSize);
-        cultureHeritageMapper.selectPage(page,null);
+        LambdaQueryWrapper<CultureHeritage> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.orderByDesc(CultureHeritage :: getAnnouncementTime);
+        cultureHeritageMapper.selectPage(page,lambdaQueryWrapper);
         Map map = new HashMap();
         map.put("current",page.getCurrent());
         map.put("total", page.getTotal());
@@ -49,6 +52,7 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
         queryWrapper.like(!StringUtils.isBlank(searchHeritage.getArea()),"declaringUnit",searchHeritage.getArea())
                 .like(!StringUtils.isBlank(searchHeritage.getPostTime()),"announcementTime",searchHeritage.getPostTime())
                 .like(!StringUtils.isBlank(searchHeritage.getName()),"name",searchHeritage.getName());
+        queryWrapper.orderByDesc("announcementTime");
         cultureHeritageMapper.selectPage(page,queryWrapper);
         Map map = new HashMap();
         map.put("current",page.getCurrent());

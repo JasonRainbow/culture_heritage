@@ -146,17 +146,17 @@ export default {
   methods: {
     // 分页插件事件
     callFather(param) {
-      // this.search_data.area=null;
-      // this.search_data.postTime=null;
-      // this.search_data.name=null;
-      // this.getAllHeritagePaged(param)
-      this.search_data.pageSize = param.pageSize;
       this.search_data.pageNumber = param.pageNumber;
+      this.search_data.pageSize = param.pageSize;
       this.searchCultureHeritage();
     },
     searchCultureHeritage(){
       console.log(this.search_data.postTime)
+      if(this.search_data.name!=null || this.search_data.postTime!=null || this.search_data.area!=null){
+        this.search_data.pageNumber=1;
+      }
       searchHeritage(null,this.search_data).then(res=>{
+        console.log(1,this.search_data)
         console.log(res.data)
         if(res.code === '0'){
           this.list_data=res.data.records;

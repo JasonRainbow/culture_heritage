@@ -110,14 +110,15 @@ export default {
           this.formData.venue = this.ruleForm.region;
           applyActivity(this.formData).then(req=>{
             if(req.code === '0'){
-              console.log("申请提交成功")
+              this.open1()
+              this.resetForm('ruleForm');
             }else{
-              console.log("申请提交失败，请联系管理员")
+              this.open2()
             }
           })
 
         } else {
-          console.log('error submit!!');
+          this.open3();
           return false;
         }
       });
@@ -125,6 +126,18 @@ export default {
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    open1() {
+      this.$message({
+        message: '恭喜你，申请提交成功',
+        type: 'success'
+      });
+    },
+    open2() {
+      this.$message.error('申请提交失败请联系管理员');
+    },
+    open3() {
+      this.$message.error('输入不合法');
     }
   },
   mounted(){

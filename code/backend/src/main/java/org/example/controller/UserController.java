@@ -60,6 +60,6 @@ public class UserController {
         user.setAvatar(uri);
         // 保存修改
         userService.update(user);
-        return Result.success();
+        return Result.success().put("avatar", uri);
     }
 }
