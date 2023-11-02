@@ -3,15 +3,15 @@
 
  Source Server         : mysql
  Source Server Type    : MySQL
- Source Server Version : 80031
+ Source Server Version : 80025
  Source Host           : localhost:3306
  Source Schema         : digital_culture_heritage
 
  Target Server Type    : MySQL
- Target Server Version : 80031
+ Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 02/11/2023 08:19:21
+ Date: 02/11/2023 08:23:46
 */
 
 SET NAMES utf8mb4;
@@ -22,15 +22,15 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `activity_promotion_apply`;
 CREATE TABLE `activity_promotion_apply`  (
-  `userId` int(0) NOT NULL COMMENT '用户id',
-  `activityName` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动名',
-  `activityArea` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动地点',
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id，自增主键',
-  `activityTime` datetime(0) NULL DEFAULT NULL COMMENT '活动时间',
-  `promotionalWebsite` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动宣传网址',
-  `activityIntroduction` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '活动介绍',
+  `userId` int NOT NULL COMMENT '用户id',
+  `activityName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动名',
+  `activityArea` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动地点',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id，自增主键',
+  `activityTime` datetime NULL DEFAULT NULL COMMENT '活动时间',
+  `promotionalWebsite` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动宣传网址',
+  `activityIntroduction` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动介绍',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of activity_promotion_apply
@@ -42,8 +42,8 @@ INSERT INTO `activity_promotion_apply` VALUES (1, '师大之星', '励德楼', 1
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
-  `commentId` int(0) NOT NULL AUTO_INCREMENT COMMENT '评论id',
-  `cultureId` int(0) UNSIGNED NOT NULL COMMENT '讨论的技艺类型',
+  `commentId` int NOT NULL AUTO_INCREMENT COMMENT '评论id',
+  `cultureId` int UNSIGNED NOT NULL COMMENT '讨论的技艺类型',
   `releaseTime` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论时间',
   `summary` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论摘要',
   `picture` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论的图片',
@@ -52,7 +52,7 @@ CREATE TABLE `comment`  (
   PRIMARY KEY (`commentId`) USING BTREE,
   INDEX `cultureId`(`cultureId`) USING BTREE,
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`cultureId`) REFERENCES `culture` (`cultureId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of comment
@@ -67,19 +67,19 @@ INSERT INTO `comment` VALUES (4, 8, '2023年9月15日', '岳州扇是中国三�
 -- ----------------------------
 DROP TABLE IF EXISTS `culture`;
 CREATE TABLE `culture`  (
-  `cultureId` int(0) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增编号',
+  `cultureId` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增编号',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '非物质文化遗产名称',
   `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '非物质文化遗产类别',
   `kind` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '非物质文化遗产类型',
   `announcementTime` year NULL DEFAULT NULL COMMENT '公布时间',
-  `productNumber` int(0) NOT NULL COMMENT '国家非遗项目序号',
+  `productNumber` int NOT NULL COMMENT '国家非遗项目序号',
   `declaringUnit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '非遗申报单位',
   `protectionUnit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '非遗保护单位',
   `introduction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '介绍',
   `model` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '3d模型url',
-  `topic` int(0) NULL DEFAULT 0 COMMENT '是否是热点文化，1表示“是”；0表示“否”',
+  `topic` int NULL DEFAULT 0 COMMENT '是否是热点文化，1表示“是”；0表示“否”',
   PRIMARY KEY (`cultureId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of culture
@@ -105,28 +105,53 @@ INSERT INTO `culture` VALUES (18, '果脯蜜饯制作技艺（雕花蜜饯制作
 INSERT INTO `culture` VALUES (19, '小吃制作技艺（火宫殿臭豆腐制作技艺）', '传统技艺', '新增项目', 2021, 1522, '湖南省长沙市', '长沙饮食集团长沙火宫殿有限公司', '无', NULL, 0);
 
 -- ----------------------------
+-- Table structure for digital_culture_heritage
+-- ----------------------------
+DROP TABLE IF EXISTS `digital_culture_heritage`;
+CREATE TABLE `digital_culture_heritage`  (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键ID，自增长',
+  `modelName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '数字非遗名称',
+  `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '数字非遗描述',
+  `modelUri` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '3D模型文件的路径',
+  `likes` int NULL DEFAULT 0 COMMENT '点赞数',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of digital_culture_heritage
+-- ----------------------------
+INSERT INTO `digital_culture_heritage` VALUES (1, '长沙窑狮子小烛台', 'Lion Figure Candelabrum 长沙窑狮子小烛台 中国工艺美术大师胡武强作品', 'assets/model1/scene.gltf', 5);
+INSERT INTO `digital_culture_heritage` VALUES (2, '扇子', '纸制扇子', 'assets/model2/scene.gltf', 6);
+INSERT INTO `digital_culture_heritage` VALUES (3, '熊猫烟灰缸 中国铜官窑', 'The Panda Ashtray 熊猫烟灰缸 中国铜官窑出品 现收藏于长沙铜官窑研究所', 'assets/model3/scene.gltf', 0);
+INSERT INTO `digital_culture_heritage` VALUES (4, '陶瓷装饰品', 'Ceramic ornament 陶瓷装饰品 铜官窑陶瓷研究所', 'assets/model4/scene.gltf', 4);
+INSERT INTO `digital_culture_heritage` VALUES (5, '铜官窑 龙', 'Ceramics Chinese Dragon 铜官窑 龙 现收藏于铜官窑陶瓷研究所', 'assets/model5/scene.gltf', 0);
+INSERT INTO `digital_culture_heritage` VALUES (6, '瓷制狮子', 'Chinese Porcelain Lion-Freepoly.org', 'assets/model6/scene.gltf', 0);
+INSERT INTO `digital_culture_heritage` VALUES (7, '瓷蛋-冰裂', '瓷蛋-冰裂', 'assets/model7/scene.gltf', 0);
+INSERT INTO `digital_culture_heritage` VALUES (8, '送子娘娘竹根雕', '送子娘娘 Songzi Niangniang 竹根雕 Bamboo root Carving', 'assets/model8/scene.gltf', 0);
+
+-- ----------------------------
 -- Table structure for offlineexperience
 -- ----------------------------
 DROP TABLE IF EXISTS `offlineexperience`;
 CREATE TABLE `offlineexperience`  (
-  `activityId` int(0) NOT NULL AUTO_INCREMENT COMMENT '所有文化的线下活动的编号',
-  `cultureId` int(0) UNSIGNED NOT NULL COMMENT '活动对应的非遗文化编号，和culture关联',
-  `contactId` int(0) NOT NULL COMMENT '联系人编号，和user关联',
+  `activityId` int NOT NULL AUTO_INCREMENT COMMENT '所有文化的线下活动的编号',
+  `cultureId` int UNSIGNED NOT NULL COMMENT '活动对应的非遗文化编号，和culture关联',
+  `contactId` int NOT NULL COMMENT '联系人编号，和user关联',
   `activityName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺名字/活动名称',
   `tradeName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '主办方/公司名称',
   `businessHours` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺营业时间/活动举办时间',
   `venue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '店铺/活动举办实际地点',
   `introduction` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '店铺/活动介绍',
   `activityPhoto` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动图片/宣传片的url',
-  `praiseNumber` int(0) UNSIGNED NULL DEFAULT NULL COMMENT '点赞数',
-  `status` int(0) UNSIGNED NULL DEFAULT 2 COMMENT '当前活动/店铺的状态，1正常，2待审批，3已结束。默认待审批',
+  `praiseNumber` int UNSIGNED NULL DEFAULT NULL COMMENT '点赞数',
+  `status` int UNSIGNED NULL DEFAULT 2 COMMENT '当前活动/店铺的状态，1正常，2待审批，3已结束。默认待审批',
   `detail` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动详情网址url',
   PRIMARY KEY (`activityId`) USING BTREE,
   INDEX `cultureId`(`cultureId`) USING BTREE,
   INDEX `contactId`(`contactId`) USING BTREE,
   CONSTRAINT `offlineexperience_ibfk_1` FOREIGN KEY (`cultureId`) REFERENCES `culture` (`cultureId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `offlineexperience_ibfk_2` FOREIGN KEY (`contactId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of offlineexperience
@@ -139,19 +164,19 @@ INSERT INTO `offlineexperience` VALUES (2, 1, 1, '张家界-精美技艺土家�
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
-  `role` int(0) NOT NULL DEFAULT 3 COMMENT '用户角色，1表示系统管理员，2表示消费者，3是普通用户',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `role` int NOT NULL DEFAULT 3 COMMENT '用户角色，1表示系统管理员，2表示消费者，3是普通用户',
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户的登录账号，唯一',
   `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户的姓名',
   `password` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户的登录密码',
   `workUnit` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户的工作单位',
   `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户的电子邮箱',
   `phone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户的手机号码',
-  `balance` int(0) NULL DEFAULT NULL COMMENT '消费者的余额',
+  `balance` int NULL DEFAULT NULL COMMENT '消费者的余额',
   `avatar` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户的头像url',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `unique_user_u`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
