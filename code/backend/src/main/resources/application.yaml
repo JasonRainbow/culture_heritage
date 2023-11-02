@@ -16,3 +16,7 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+  configuration:
+    # ²»¿ªÆôÍÕ·å×ª»»
+    map-underscore-to-camel-case: false
+
