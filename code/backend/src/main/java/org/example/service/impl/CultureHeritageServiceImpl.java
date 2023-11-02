@@ -24,6 +24,7 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
     @Autowired
     CultureHeritageMapper cultureHeritageMapper;
 
+
     @Override
     public Result getAllHeritageByPage(Integer pageSize, Integer pageNumber) {
         IPage<CultureHeritage> page =new Page<>(pageNumber, pageSize);
@@ -33,6 +34,11 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
         map.put("records", page.getRecords());
+        map.put("totalPage",(page.getTotal()+page.getSize()-1)/page.getSize());
+        List postTimeList = cultureHeritageMapper.searchAllPostTime();
+        map.put("postTimeList",postTimeList);
+        List areaList = cultureHeritageMapper.searchAllArea();
+        map.put("areaList",areaList);
         return Result.success(map);
     }
 
@@ -49,6 +55,7 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
         map.put("records", page.getRecords());
+        map.put("totalPage",(page.getTotal()+page.getSize()-1)/page.getSize());
         return Result.success(map);
     }
 

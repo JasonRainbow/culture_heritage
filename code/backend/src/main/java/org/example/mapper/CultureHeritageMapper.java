@@ -6,10 +6,11 @@ import org.example.pojo.CultureHeritageDistributeVO;
 
 import java.util.List;
 
-/**
- * @author hzx
- */
 public interface CultureHeritageMapper extends BaseMapper<CultureHeritage> {
+
+    public List searchAllPostTime();
+
+    public List searchAllArea();
 
     /**
      * 查询非物质文化遗产的分布情况
