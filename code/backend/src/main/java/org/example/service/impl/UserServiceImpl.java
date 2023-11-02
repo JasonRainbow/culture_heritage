@@ -91,13 +91,6 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public void validate(String username) {
-        if (StringUtils.isBlank(username)) {
-            // 用户名为空
-            throw new CustomException(ResponseStatusEnum.USERNAME_EMPTY);
-        }
-    }
-
     /**
      * 非空校验校验用户名、密码、昵称
      * @param username 用户名
@@ -116,8 +109,8 @@ public class UserServiceImpl implements UserService {
         if(StringUtils.isBlank(rpassword)){
             throw new CustomException(ResponseStatusEnum.UPDATE_PASSWORD_EMPTY);
         }
-
     }
+
     public void validate(String username) {
         if(StringUtils.isBlank(username)){
             throw new CustomException(ResponseStatusEnum.NAME_EMPTY);
