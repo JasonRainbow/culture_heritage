@@ -90,8 +90,7 @@ export default {
     }
   },
   created() {
-    this.$store.commit('activity/updateActivityArr', this.activityArr)
-    console.log(this.$store.state.activity.activityArr.length)
+
   },
   methods: {
     handleSizeChange () {

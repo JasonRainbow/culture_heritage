@@ -13,10 +13,19 @@
 
           <div style="padding: 14px;">
             <span class="my-icon">
-              <i class="el-icon-thumb"></i>{{item.likes}}
+              <i class="el-icon-thumb"></i>  {{item.likes}}
             </span>
-            <i class="el-icon-chat-round my-icon"></i>
-            <i class="el-icon-more-outline"></i>
+            <el-popover
+                class="my-icon"
+                placement="bottom"
+                :title="item.modelName"
+                width="30"
+                trigger="click"
+                :content="item.description">
+              <i class="el-icon-view" slot="reference"></i>
+            </el-popover>
+
+            <i class="el-icon-more-outline" style="cursor: pointer"></i>
           </div>
         </el-card>
       </el-col>
@@ -60,7 +69,6 @@ export default {
       getDigitalCultureHeritageByPage(this.query_params).then((res)=>{
         if (res.code === "0") {
           this.list_data = res.data.records
-          console.log(this.list_data)
         }
       })
     }
@@ -84,6 +92,7 @@ export default {
 
 .my-icon {
   margin-right: 80px;
+  cursor: pointer;
 }
 
 .modelName {
