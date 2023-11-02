@@ -53,13 +53,14 @@ export default {
       //为表单绑定验证功能
       this.$refs [formName].validate((valid) => {
         if (valid) {
-          /*this.$store.dispatch("Login", {userInfo: this.form}).then((res)=>{
+          this.$store.dispatch("Login", {userInfo: this.form}).then((res) => {
+            console.log(res)
             this.$message({
               type: "success",
               message: "登录成功"
             })
             this.$router.push({path: '/home'})
-          })*/
+        })
         }else{
           this.dialogVisible = true;
           return false;

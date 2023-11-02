@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+    @Override
     public Result register(User user){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         validate(user.getUsername(), user.getPassword(), user.getName());
@@ -73,6 +74,11 @@ public class UserServiceImpl implements UserService {
         return Result.error(ResponseStatusEnum.PASSWORD_ERROR);
     }
 
+    @Override
+    public User getUserById(Integer userId) {
+        return userMapper.selectById(userId);
+    }
+
 
     public void validate(String username, String password) {
         if (StringUtils.isBlank(username)) {
@@ -103,8 +109,8 @@ public class UserServiceImpl implements UserService {
         if(StringUtils.isBlank(rpassword)){
             throw new CustomException(ResponseStatusEnum.UPDATE_PASSWORD_EMPTY);
         }
-
     }
+
     public void validate(String username) {
         if(StringUtils.isBlank(username)){
             throw new CustomException(ResponseStatusEnum.NAME_EMPTY);

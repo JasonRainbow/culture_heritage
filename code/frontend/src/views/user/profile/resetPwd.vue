@@ -29,7 +29,13 @@
 
 <script>
 
+import {modify_user_password} from "@/api/user_api";
+import {setLocalStorageItem} from "@/utils/auth";
+
 export default {
+  props: {
+    userName:String
+  },
   components: {
 
   },
@@ -47,9 +53,6 @@ export default {
         oldPwd: "",
         newPwd: "",
         confirmPassword: ""
-      },
-      updatePwdInfo: {
-
       },
       // 表单校验
       rules: {
@@ -72,7 +75,12 @@ export default {
     submit() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          /*updateUserPassword(this.user).then(res => {
+          const updatePwdInfo = {
+            username:this.userName,
+            password:this.user.oldPwd,
+            rpassword:this.user.newPwd
+          }
+          modify_user_password(updatePwdInfo).then(res => {
             if (res.code === "0") {
               this.$message.success("修改成功");
               // 将密码输入框全设置为空
@@ -82,7 +90,7 @@ export default {
             } else {
               this.$message.error(res.msg);
             }
-          });*/
+          })
         }
       });
     },

@@ -17,7 +17,7 @@
               </li>
               <li class="list-group-item">
                 <i class="el-icon-postcard"></i>用户昵称
-                <div class="pull-right">{{ user.nickname }}</div>
+                <div class="pull-right">{{ user.name }}</div>
               </li>
               <li class="list-group-item">
                 <i class="el-icon-mobile"></i>手机号码
@@ -46,7 +46,7 @@
               <userInfo :user="user" />
             </el-tab-pane>
             <el-tab-pane label="修改密码" name="resetPwd">
-              <resetPwd />
+              <resetPwd :userName="user.username"/>
             </el-tab-pane>
           </el-tabs>
         </el-card>
@@ -59,6 +59,7 @@
 import userAvatar from "./userAvatar";
 import userInfo from "./userInfo";
 import resetPwd from "./resetPwd";
+import { parseLocalStorageItem,setLocalStorageItem } from "@/utils/auth";
 import 'animate.css'
 
 export default {
@@ -84,8 +85,10 @@ export default {
 
   },
   methods: {
+    //获取用户个人信息
     getUser() {
-
+      this.user = parseLocalStorageItem("user")
+      console.log(this.user)
     },
     logout() {
       this.$confirm('退出登录, 是否继续?', '提示', {
@@ -94,16 +97,13 @@ export default {
         type: 'warning'
       })
         .then(() => {
-          /*setTimeout(() => { // 用户退出登录
-            this.$store.dispatch("Logout").then(()=>{
-              this.$message({
-                type: 'success',
-                message: '已退出登录!'
-              })
-              this.$router.push("/home")
-            })
-            // location.reload()
-          }, 1000)*/
+          this.$message({
+            type: 'success',
+            message: '已退出登录!'
+          })
+          this.$store.commit("SET_USER","") // 更新仓库用户信息
+          setLocalStorageItem("user","") // 更新本地存储用户信息
+          this.$router.push("/home")
         })
         .catch(() => {
           this.$message({

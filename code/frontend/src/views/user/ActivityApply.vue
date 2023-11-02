@@ -128,7 +128,7 @@ export default {
     }
   },
   mounted(){
-    this.formData.contactId = JSON.parse(localStorage.getItem("user"));
+    this.formData.contactId = JSON.parse(localStorage.getItem("user")).id;
   }
 }
 </script>

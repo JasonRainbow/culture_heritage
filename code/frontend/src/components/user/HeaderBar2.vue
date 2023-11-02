@@ -4,7 +4,7 @@
       湖湘传统技艺类非物质文化遗产数字化与虚拟体验平台
     </div>
     <div id="show-login-div">
-      <div id="user-info" v-if="loginFlag"> <!--显示登录用户-->
+      <div id="user-info" v-if="$store.state.user != ''"> <!--显示登录用户-->
         <el-avatar :size="45" icon="el-icon-user-solid" :src="avatar" id="inner-user-avatar"></el-avatar>
         <div id="inner-user-nick">{{ nickname }}</div>
       </div>
@@ -31,16 +31,16 @@
 
 export default {
   name: "HeaderBar2",
-  props: {
-    /*activeIndex: {
-      type: Number,
-      require: true
-    },
-    loginFlag: {
-      type: Boolean,
-      require: true
-    }*/
-  },
+  // props: {
+  //   /*activeIndex: {
+  //     type: Number,
+  //     require: true
+  //   },
+  //   loginFlag: {
+  //     type: Boolean,
+  //     require: true
+  //   }*/
+  // },
   data() {
     return {
       items: [
@@ -64,7 +64,7 @@ export default {
         "/not-login": 4,
       },
       activeIndex: 0,
-      loginFlag: true,
+      // loginFlag: true,
     }
   },
   methods: {

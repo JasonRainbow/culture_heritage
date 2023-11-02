@@ -5,6 +5,7 @@ target
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+code/files/
 
 # Editor directories and files
 .idea
