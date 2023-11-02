@@ -1,15 +1,12 @@
 // 导入组件
 import Vue from 'vue';
 import Router from 'vue-router';
-// 登录
 
-// 管理员首页
 import PersonPage from '../views/user/profile/index';
 import HomePage from "@/views/user/HomePage";
 import UserRegister from "@/views/user/UserRegister";
 import UserLogin from "@/views/user/UserLogin";
 import UserIndex from "../views/index"
-// 用户首页
 import OffLineActivity from "@/views/user/OffLineActivity";
 import ActivityApply from "@/views/user/ActivityApply";
 import VirtualExperience from "@/views/user/VirtualExperience";
