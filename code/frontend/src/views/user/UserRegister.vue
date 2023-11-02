@@ -43,6 +43,8 @@
 
 <script>
 
+import {user_register} from "@/api/user_api";
+
 export default {
   name: "UserRegister",
   data() {
@@ -100,7 +102,7 @@ export default {
       //为表单绑定验证功能
       this.$refs [formName].validate((valid) => {
         if (valid) {
-          /*registerSys(this.form).then(res => {
+          user_register(this.form).then(res => {
             if (res.code === '0') {
               this.$message({
                 type: "success",
@@ -112,7 +114,7 @@ export default {
                 message: res.msg
               })
             }
-          })*/
+          })
         }else{
           this.dialogVisible = true;
           return false;

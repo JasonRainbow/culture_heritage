@@ -18,6 +18,7 @@ public class CultureHeritage {
     /**
      * 非物质文化遗产所属的地级市
      */
+    @TableField("cityId")
     private Integer cityId;
 
     @TableField("announcementTime")

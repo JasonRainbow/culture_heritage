@@ -58,6 +58,7 @@ export function blobValidate(data) {
 request.interceptors.response.use(
     response => {
         let res = response.data;
+        console.log(res)
         // 如果是返回的文件
         if (response.config.responseType === 'blob') {
             return res

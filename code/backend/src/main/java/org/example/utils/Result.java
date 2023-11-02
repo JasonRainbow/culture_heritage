@@ -98,7 +98,9 @@ public class Result {
             this.data = new HashMap<String, Object>();
         }
         // data不为空且不是一个HashMap的实例，则不能put
-        if (!(this.data instanceof HashMap)) return this;
+        if (!(this.data instanceof HashMap)) {
+            return this;
+        }
         ((HashMap<String, Object>) this.data).put(key, value);
         return this;
     }

@@ -2,8 +2,8 @@
   <el-form ref="form" :model="user_" :rules="rules" label-width="80px">
     <el-row>
       <el-col :span="15" :xs="24">
-        <el-form-item label="用户昵称" prop="nickname">
-          <el-input id="name" v-model="user_.nickname" maxlength="30" />
+        <el-form-item label="用户昵称" prop="name">
+          <el-input id="name" v-model="user_.name" maxlength="30" />
         </el-form-item>
       </el-col>
     </el-row>
@@ -28,13 +28,6 @@
         </el-form-item>
       </el-col>
     </el-row>
-
-<!--    <el-form-item label="性别">
-      <el-radio-group v-model="admin.name">
-        <el-radio label="0">男</el-radio>
-        <el-radio label="1">女</el-radio>
-      </el-radio-group>
-    </el-form-item>-->
     <el-form-item>
       <el-button type="primary" size="mini" @click="submit">保存</el-button>
     </el-form-item>
@@ -42,6 +35,8 @@
 </template>
 
 <script>
+import {update_user_info} from "@/api/user_api";
+import {setLocalStorageItem} from "@/utils/auth";
 
 export default {
   props: {
@@ -58,7 +53,7 @@ export default {
     return {
       // 表单校验
       rules: {
-        nickname: [
+        name: [
           { required: true, message: "用户昵称不能为空", trigger: "blur" }
         ],
         email: [
@@ -84,22 +79,16 @@ export default {
     submit() { // 提交管理员信息的修改
       this.$refs["form"].validate(valid => {
         if (valid) {
-          // 要修改的信息
-          /*const updateInfo = {
-            id: this.user.id,
-            name: this.user.nickname,
-            phone: this.user.phone,
-            email: this.user.email,
-            workUnit: this.user.workUnit
-          }
-          userUpdate(updateInfo).then(res => {
+          update_user_info(this.user).then(res => {
             if (res.code === "0") {
               this.$message.success("修改用户个人信息成功");
-              updateLocalUserInfo()
+              setLocalStorageItem("user",this.user) // 更新本地存储用户信息
+              this.$store.commit("SET_USER",this.user) // 更新仓库用户信息
+              console.log("仓库用户信息："+this.$store.state.user)
             } else {
               this.$message.success("修改用户个人信息失败");
             }
-          });*/
+          });
         }
       });
     },

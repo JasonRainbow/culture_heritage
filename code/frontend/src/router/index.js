@@ -1,6 +1,7 @@
 // 导入组件
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from '@/vuex/store'
 
 import PersonPage from '../views/user/profile/index';
 import HomePage from "@/views/user/HomePage";
@@ -12,6 +13,7 @@ import ActivityApply from "@/views/user/ActivityApply";
 import VirtualExperience from "@/views/user/VirtualExperience";
 import Forum from "@/views/user/Forum.vue";
 import DisplayModel from "@/views/user/DisplayModel";
+import NotLogin from "@/views/user/NotLogin"
 
 // 启用路由
 Vue.use(Router);
@@ -105,6 +107,14 @@ const router = new Router({
           meta: {
             requireAuth: false
           }
+        },
+        {
+          path: "/not-login",
+          name: "未登录", // 未登录时个人中心展示页面
+          component: NotLogin,
+          meta: {
+            requireAuth: false
+          }
         }
       ]
     }
@@ -114,15 +124,23 @@ const router = new Router({
 // 对路由进行权限控制
 // 全局路由拦截器  前置路由守卫
 router.beforeEach((to, from, next) => {
-  console.log("111")
-  if (to.matched.length !== 0) {
+  /*if (to.matched.length !== 0) {
     next()
   } else {
-    console.log("222")
     next({
       path: "/home",
       query: {redirect: to.fullPath}
     })
+  }*/
+  if(to.path !== '/personal'){
+    next()
+  }else{
+    const user = store.state.user
+    if(user === ''){  // 用户未登录
+      next('/not-login')
+    }else{
+      next()
+    }
   }
 })
 
