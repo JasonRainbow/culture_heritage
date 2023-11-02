@@ -7,7 +7,6 @@ import org.example.pojo.SearchHeritage;
 import org.example.utils.Result;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author hzx
