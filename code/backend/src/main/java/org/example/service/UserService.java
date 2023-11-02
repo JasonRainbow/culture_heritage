@@ -1,6 +1,5 @@
 package org.example.service;
 
-import org.example.pojo.ActivityPromotionApply;
 import org.example.pojo.User;
 import org.example.pojo.UserPassword;
 import org.example.utils.Result;
@@ -14,5 +13,4 @@ public interface UserService {
 
     Result rPassword(UserPassword userPassword);
 
-    Result activityPromotionApply(ActivityPromotionApply activityPromotionApply);
 }

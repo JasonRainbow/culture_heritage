@@ -3,16 +3,16 @@
     <div style="margin-bottom: 20px">
       <el-select style="width: 150px; margin-right: 10px" v-model="search_data.area" placeholder="请选择地区">
         <el-option
-            v-for="item in options.area"
-            :key="item"
+            v-for="(item,index) in options.area"
+            :key="index"
             :label="item"
             :value="item">
         </el-option>
       </el-select>
       <el-select style="width: 180px; margin-right: 10px" v-model="search_data.postTime" placeholder="请选择公布时间">
         <el-option
-            v-for="item in options.postTime"
-            :key="item"
+            v-for="(item,index) in options.postTime"
+            :key="index"
             :label="item"
             :value="item">
         </el-option>
@@ -31,23 +31,23 @@
               border element-loading-text="拼命加载中"
 
               style="width: 100%; font-size: 14px; ">
-      <el-table-column sortable prop="cultureId" label="ID" width="80">
+      <el-table-column sortable prop="cultureId" label="ID" width="80" >
       </el-table-column>
-      <el-table-column prop="name" label="名称" width="150">
+      <el-table-column prop="name" label="名称" width="150" >
       </el-table-column>
-      <el-table-column prop="category" label="类别" width="150">
+      <el-table-column prop="category" label="类别" width="150" >
       </el-table-column>
-      <el-table-column prop="kind" label="类型" width="140">
+      <el-table-column prop="kind" label="类型" width="140" >
       </el-table-column>
-      <el-table-column sortable prop="announcementTime" label="公布时间" width="100">
+      <el-table-column sortable prop="announcementTime" label="公布时间" width="100" >
       </el-table-column>
       <el-table-column prop="declaringUnit" label="申报地区或单位" >
       </el-table-column>
-      <el-table-column prop="protectionUnit" label="保护单位" >
+      <el-table-column prop="protectionUnit" label="保护单位"  >
       </el-table-column>
     </el-table>
     <!-- 分页组件 -->
-    <Pagination v-bind:child-msg="pageparm" @callFather="callFather"></Pagination>
+    <Pagination v-bind:child-msg="pageParam" @callFather="callFather"></Pagination>
   </div>
 </template>
 
@@ -71,12 +71,17 @@ export default {
         pageSize: 10,
         //total: 10
       },
+      pageParam:{
+        currentPage:1,
+        pageSize:10,
+        total:10
+      },
       search_data: {
         area:null,
         postTime:null,
         name: null,
-        pageSize:'5',
-        pageNumber:'1'
+        pageSize:10,
+        pageNumber:1
       },
       list_data: [
         {
@@ -136,21 +141,18 @@ export default {
     }
   },
   mounted(){
-    getAllHeritageByPage(this.searchParam).then(res=>{
-      console.log(res.data)
-      if(res.code === '0'){
-        this.list_data=res.data.records;
-        this.options.postTime=res.data.postTimeList;
-        this.options.area=res.data.areaList;
-      }
-    })
+    this.getAllHeritagePaged(this.searchParam)
   },
   methods: {
     // 分页插件事件
-    callFather(parm) {
-      this.search_data.pageNum = parm.currentPage
-      this.search_data.pageSize = parm.pageSize
-
+    callFather(param) {
+      // this.search_data.area=null;
+      // this.search_data.postTime=null;
+      // this.search_data.name=null;
+      // this.getAllHeritagePaged(param)
+      this.search_data.pageSize = param.pageSize;
+      this.search_data.pageNumber = param.pageNumber;
+      this.searchCultureHeritage();
     },
     searchCultureHeritage(){
       console.log(this.search_data.postTime)
@@ -158,6 +160,20 @@ export default {
         console.log(res.data)
         if(res.code === '0'){
           this.list_data=res.data.records;
+          this.pageParam.total=res.data.total
+        }
+      })
+    },
+    getAllHeritagePaged(param){
+      getAllHeritageByPage(param).then(res=>{
+        console.log(res.data)
+        if(res.code === '0'){
+          this.list_data=res.data.records;
+          this.options.postTime=res.data.postTimeList;
+          this.options.area=res.data.areaList;
+          this.pageParam.currentPage=res.data.current;
+          this.pageParam.pageSize=res.data.size;
+          this.pageParam.total=res.data.total
         }
       })
     }

@@ -3,75 +3,27 @@
 
  Source Server         : mysql
  Source Server Type    : MySQL
- Source Server Version : 80025
+ Source Server Version : 80031
  Source Host           : localhost:3306
  Source Schema         : digital_culture_heritage
 
  Target Server Type    : MySQL
- Target Server Version : 80025
+ Target Server Version : 80031
  File Encoding         : 65001
 
- Date: 02/11/2023 14:10:26
+ Date: 02/11/2023 14:02:09
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for activity_promotion_apply
--- ----------------------------
-DROP TABLE IF EXISTS `activity_promotion_apply`;
-CREATE TABLE `activity_promotion_apply`  (
-  `userId` int NOT NULL COMMENT '用户id',
-  `activityName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动名',
-  `activityArea` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动地点',
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id，自增主键',
-  `activityTime` datetime NULL DEFAULT NULL COMMENT '活动时间',
-  `promotionalWebsite` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动宣传网址',
-  `activityIntroduction` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动介绍',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of activity_promotion_apply
--- ----------------------------
-INSERT INTO `activity_promotion_apply` VALUES (1, '师大之星', '励德楼', 1, '2023-11-11 08:00:00', 'http://www.hunnu.edu.cn', '非常好');
-
--- ----------------------------
--- Table structure for city
--- ----------------------------
-DROP TABLE IF EXISTS `city`;
-CREATE TABLE `city`  (
-  `cityId` int NOT NULL AUTO_INCREMENT COMMENT '城市主键ID，自增长',
-  `cityName` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '城市名',
-  PRIMARY KEY (`cityId`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of city
--- ----------------------------
-INSERT INTO `city` VALUES (1, '常德市');
-INSERT INTO `city` VALUES (2, '郴州市');
-INSERT INTO `city` VALUES (3, '衡阳市');
-INSERT INTO `city` VALUES (4, '怀化市');
-INSERT INTO `city` VALUES (5, '娄底市');
-INSERT INTO `city` VALUES (6, '邵阳市');
-INSERT INTO `city` VALUES (7, '湘潭市');
-INSERT INTO `city` VALUES (8, '湘西土家族苗族自治州');
-INSERT INTO `city` VALUES (9, '益阳市');
-INSERT INTO `city` VALUES (10, '永州市');
-INSERT INTO `city` VALUES (11, '岳阳市');
-INSERT INTO `city` VALUES (12, '张家界市');
-INSERT INTO `city` VALUES (13, '长沙市');
-INSERT INTO `city` VALUES (14, '株洲市');
-
--- ----------------------------
 -- Table structure for comment
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment`  (
-  `commentId` int NOT NULL AUTO_INCREMENT COMMENT '评论id',
-  `cultureId` int UNSIGNED NOT NULL COMMENT '讨论的技艺类型',
+  `commentId` int(0) NOT NULL AUTO_INCREMENT COMMENT '评论id',
+  `cultureId` int(0) UNSIGNED NOT NULL COMMENT '讨论的技艺类型',
   `releaseTime` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论时间',
   `summary` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论摘要',
   `picture` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论的图片',
@@ -80,7 +32,7 @@ CREATE TABLE `comment`  (
   PRIMARY KEY (`commentId`) USING BTREE,
   INDEX `cultureId`(`cultureId`) USING BTREE,
   CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`cultureId`) REFERENCES `culture` (`cultureId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
@@ -95,12 +47,12 @@ INSERT INTO `comment` VALUES (4, 8, '2023年9月15日', '岳州扇是中国三�
 -- ----------------------------
 DROP TABLE IF EXISTS `culture`;
 CREATE TABLE `culture`  (
-  `cultureId` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增编号',
+  `cultureId` int(0) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增编号',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '非物质文化遗产名称',
   `category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '非物质文化遗产类别',
   `kind` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '非物质文化遗产类型',
   `cityId` int NULL DEFAULT NULL COMMENT '外键，所属地级市ID',
-  `announcementTime` year NULL DEFAULT NULL COMMENT '公布时间',
+  `announcementTime` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '公布时间',
   `productNumber` int NOT NULL COMMENT '国家非遗项目序号',
   `declaringUnit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '非遗申报单位',
   `protectionUnit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '非遗保护单位',
@@ -178,18 +130,19 @@ CREATE TABLE `offlineexperience`  (
   `praiseNumber` int UNSIGNED NULL DEFAULT NULL COMMENT '点赞数',
   `status` int UNSIGNED NULL DEFAULT 2 COMMENT '当前活动/店铺的状态，1正常，2待审批，3已结束。默认待审批',
   `detail` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动详情网址url',
+  `isPassed` tinyint(0) NULL DEFAULT NULL COMMENT '线下活动是否被管理员通过',
   PRIMARY KEY (`activityId`) USING BTREE,
   INDEX `cultureId`(`cultureId`) USING BTREE,
   INDEX `contactId`(`contactId`) USING BTREE,
   CONSTRAINT `offlineexperience_ibfk_1` FOREIGN KEY (`cultureId`) REFERENCES `culture` (`cultureId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `offlineexperience_ibfk_2` FOREIGN KEY (`contactId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of offlineexperience
 -- ----------------------------
-INSERT INTO `offlineexperience` VALUES (1, 2, 1, '体验古法蓝染制作', '染布公司', '8：00-17:00 ', '梅溪湖', '一块蓝染布，\r\n隐匿于扎染的千年时光，\r\n闻得见诗经的味道。\r\n蓝白两色创造了一个淳朴自然、\r\n千变万化的艺术世界。', 'https://img.alicdn.com/imgextra/i2/363098991/TB2ryYDX91I.eBjy0FjXXabfXXa_!!363098991.jpg', 2, 1, '64 【推荐：长沙团建、姐妹趴、亲子研学活动 - 爱染布的文老师 | 小红书 - 标记我的生活】 😆 FflwxLmTOYrGrQe 😆 http://xhslink.com/mYuy4v');
-INSERT INTO `offlineexperience` VALUES (2, 1, 1, '张家界-精美技艺土家锦和砂石画', '张家界旅游商品产业园', '周一至周五10:00-16:00', '张家界永定区沙堤街道旅游商品产业园', '土家织锦文化创意园和军声砂石画文创园', 'https://www.xilankapu.com/wp-content/uploads/2020/07/1594808389-6edd4c48c4ad65b-748x1024.jpg', 3, 2, 'https://www.xiaohongshu.com/explore/63ccefd2000000001b01687c');
+INSERT INTO `offlineexperience` VALUES (1, 2, 1, '体验古法蓝染制作', '染布公司', '8：00-17:00 ', '梅溪湖', '一块蓝染布，\r\n隐匿于扎染的千年时光，\r\n闻得见诗经的味道。\r\n蓝白两色创造了一个淳朴自然、\r\n千变万化的艺术世界。', 'https://img.alicdn.com/imgextra/i2/363098991/TB2ryYDX91I.eBjy0FjXXabfXXa_!!363098991.jpg', 2, 1, 'http://xhslink.com/mYuy4v', 1);
+INSERT INTO `offlineexperience` VALUES (2, 1, 1, '张家界-精美技艺土家锦和砂石画', '张家界旅游商品产业园', '周一至周五10:00-16:00', '张家界永定区沙堤街道旅游商品产业园', '土家织锦文化创意园和军声砂石画文创园', 'https://www.xilankapu.com/wp-content/uploads/2020/07/1594808389-6edd4c48c4ad65b-748x1024.jpg', 3, 2, 'https://www.xiaohongshu.com/explore/63ccefd2000000001b01687c', 1);
 
 -- ----------------------------
 -- Table structure for user
@@ -208,12 +161,13 @@ CREATE TABLE `user`  (
   `avatar` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户的头像url',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `unique_user_u`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 77 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 3, '张三', '过往烟云', 'e10adc3949ba59abbe56e057f20f883e', '湖南师范大学', '123456765@qq.com', '13135475865', NULL, '');
+INSERT INTO `user` VALUES (1, 3, '张三', '过往烟云2', '', '湖南师范大学', '726354856@qq.com', '13135475865', NULL, '');
 INSERT INTO `user` VALUES (2, 2, '李四', '雨纷纷', '123456', '湘西染布有限公司', '9995555123@qq.com', '13587946534', 30, NULL);
+INSERT INTO `user` VALUES (77, 3, '王五', '过往烟云2', 'e10adc3949ba59abbe56e057f20f883e', '湖南师范大学', '123456765@qq.com', '13135475865', NULL, '');
 
 SET FOREIGN_KEY_CHECKS = 1;
