@@ -59,7 +59,7 @@
 import userAvatar from "./userAvatar";
 import userInfo from "./userInfo";
 import resetPwd from "./resetPwd";
-import { parseLocalStorageItem,setLocalStorageItem } from "@/utils/auth";
+import { parseLocalStorageItem,setLocalStorageItem } from "@/utils/storage";
 import 'animate.css'
 
 export default {

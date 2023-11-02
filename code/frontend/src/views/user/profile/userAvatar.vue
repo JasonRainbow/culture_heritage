@@ -134,17 +134,21 @@ export default {
     // 上传图片
     uploadImg() {
       this.$refs.cropper.getCropBlob(data => {
+        console.log(111)
         let formData = new FormData();
+        console.log(data)
         formData.append("file", data);
-        // console.log(formData)
+        formData.append("id", 1)
+        console.log(formData)
+
         // console.log(data)
-        /*this.$store.dispatch("uploadAvatar", formData).then((res)=>{
+        this.$store.dispatch("uploadAvatar", formData).then((res)=>{
           if (res.code === "0") {
             this.open = false
-            this.visible = false;
-            this.options.img = res.data;
+            this.visible = false
+            this.options.img = res.data
           }
-        })*/
+        })
       });
     },
     // 实时预览

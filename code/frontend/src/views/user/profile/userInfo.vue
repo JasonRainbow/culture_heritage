@@ -36,7 +36,7 @@
 
 <script>
 import {update_user_info} from "@/api/user_api";
-import {setLocalStorageItem} from "@/utils/auth";
+import {setLocalStorageItem} from "@/utils/storage";
 
 export default {
   props: {
