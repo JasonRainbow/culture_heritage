@@ -94,6 +94,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public void validate(String username) {
+        if (StringUtils.isBlank(username)) {
+            // 用户名为空
+            throw new CustomException(ResponseStatusEnum.USERNAME_EMPTY);
+        }
+    }
+
     /**
      * 非空校验校验用户名、密码、昵称
      * @param username 用户名
@@ -117,21 +124,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Result update(User user) {
-        validate(user.getUsername(), user.getPassword());
+        validate(user.getUsername());
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username",user.getUsername());
         User user1 = userMapper.selectOne(queryWrapper);
         if(user1==null){
             return Result.error(ResponseStatusEnum.USER_ACCOUNT_NOT_EXIST);
         }
-        if(user1.getPassword().equals(MD5Util.encrypt(user.getPassword()))){
-            user.setPassword(MD5Util.encrypt(user.getPassword()));
-            int count = userMapper.update(user,queryWrapper);
-            if(count>0){
-                return Result.success("0","修改个人信息成功");
-            }
-            return Result.error(ResponseStatusEnum.UPDATE_USER_INFO_FAILED);
+        int count = userMapper.update(user,queryWrapper);
+        if(count>0){
+            return Result.success("0","修改个人信息成功");
         }
-        return Result.error(ResponseStatusEnum.USERNAME_PASSWORD_ERROR);
+        return Result.error(ResponseStatusEnum.ERROR);
     }
 }
