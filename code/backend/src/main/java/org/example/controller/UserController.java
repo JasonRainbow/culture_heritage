@@ -4,10 +4,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.example.pojo.User;
 import org.example.pojo.UserPassword;
+import org.example.service.FileService;
 import org.example.service.UserService;
 import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Tag(name="用户",description = "用户相关接口")
 @RestController
@@ -15,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    private FileService fileService;
 
     @Operation(summary = "注册", description = "用户注册接口")
     @PostMapping("/register")
@@ -46,7 +53,13 @@ public class UserController {
 
     @Operation(summary = "修改", description = "上传并修改用户的头像")
     @PutMapping("/uploadAvatar")
-    public Result uploadAvatar() {
-        return null;
+    public Result uploadAvatar(MultipartFile file, Integer id) throws IOException {
+        // 保存用户的头像
+        String uri = fileService.uploadFile(file);
+        User user = userService.getUserById(id);
+        user.setAvatar(uri);
+        // 保存修改
+        userService.update(user);
+        return Result.success();
     }
 }

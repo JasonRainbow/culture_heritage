@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+    @Override
     public Result register(User user){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         validate(user.getUsername(), user.getPassword(), user.getName());
@@ -71,6 +72,11 @@ public class UserServiceImpl implements UserService {
             }
         }
         return Result.error(ResponseStatusEnum.PASSWORD_ERROR);
+    }
+
+    @Override
+    public User getUserById(Integer userId) {
+        return userMapper.selectById(userId);
     }
 
 

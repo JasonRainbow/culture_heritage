@@ -3,6 +3,7 @@ package org.example.controller;
 import cn.hutool.json.JSON;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.service.FileService;
 import org.example.utils.Result;

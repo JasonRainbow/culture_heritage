@@ -13,4 +13,10 @@ public interface UserService {
 
     Result rPassword(UserPassword userPassword);
 
+    /**
+     * 根据用户的ID查询用户的所有信息
+     * @param userId 用户ID
+     * @return 用户信息
+     */
+    User getUserById(Integer userId);
 }
