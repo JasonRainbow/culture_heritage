@@ -81,7 +81,7 @@ export default {
         postTime:null,
         name: null,
         pageSize:10,
-        pageNumber:'1'
+        pageNumber:1
       },
       list_data: [
         {
@@ -144,16 +144,15 @@ export default {
     this.getAllHeritagePaged(this.searchParam)
   },
   methods: {
-    getRowKeys(row){
-      return row.id
-    },
     // 分页插件事件
     callFather(param) {
-      this.search_data.area=null,
-      this.search_data.postTime=null,
-      this.search_data.name=null,
-      this.getAllHeritagePaged(param)
-
+      // this.search_data.area=null;
+      // this.search_data.postTime=null;
+      // this.search_data.name=null;
+      // this.getAllHeritagePaged(param)
+      this.search_data.pageSize = param.pageSize;
+      this.search_data.pageNumber = param.pageNumber;
+      this.searchCultureHeritage();
     },
     searchCultureHeritage(){
       console.log(this.search_data.postTime)
@@ -172,8 +171,8 @@ export default {
           this.list_data=res.data.records;
           this.options.postTime=res.data.postTimeList;
           this.options.area=res.data.areaList;
-          this.pageParam.currentPage=res.data.current,
-          this.pageParam.pageSize=res.data.size,
+          this.pageParam.currentPage=res.data.current;
+          this.pageParam.pageSize=res.data.size;
           this.pageParam.total=res.data.total
         }
       })
