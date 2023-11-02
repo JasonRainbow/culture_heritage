@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import {applyActivity} from "@/api/offline_activity_api";
+
 export default {
   name: "ActivityApply",
   data() {
@@ -45,6 +47,7 @@ export default {
         region: '',
         date1: '',
         date2: '',
+        activityUrl:'',
         desc: ''
       },
       rules: {
@@ -85,6 +88,14 @@ export default {
             trigger: 'blur'
           }
         ]
+      },
+      formData:{
+        contactId:1,
+        activityName:null,
+        businessHours:null,
+        introduction:null,
+        detail:null,
+        venue:null,
       }
     };
   },
@@ -92,11 +103,18 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$message({
-            showClose: true,
-            message: '申请提交成功',
-            type: 'success'
-          });
+          this.formData.activityName = this.ruleForm.name;
+          this.formData.businessHours = this.ruleForm.date1+this.ruleForm.date2;
+          this.formData.introduction = this.ruleForm.desc;
+          this.formData.detail = this.ruleForm.activityUrl;
+          this.formData.venue = this.ruleForm.region;
+          applyActivity(this.formData).then(req=>{
+            if(req.code === '0'){
+              console.log("申请提交成功")
+            }else{
+              console.log("申请提交失败，请联系管理员")
+            }
+          })
 
         } else {
           console.log('error submit!!');
@@ -108,6 +126,9 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
+  },
+  mounted(){
+    this.formData.contactId = JSON.parse(localStorage.getItem("user"));
   }
 }
 </script>

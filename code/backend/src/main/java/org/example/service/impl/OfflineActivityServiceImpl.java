@@ -46,6 +46,8 @@ public class OfflineActivityServiceImpl implements OfflineActivityService {
             return Result.error(ResponseStatusEnum.USERNAME_EMPTY);
         }
         offlineActivity.setCultureId(1);
+        offlineActivity.setIsPassed(0);
+        System.out.println(offlineActivity);
         int rows = offlineActivityMapper.insert(offlineActivity);
         if(rows>0){
             return Result.success();
