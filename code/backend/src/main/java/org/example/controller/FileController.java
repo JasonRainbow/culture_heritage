@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package org.example.controller;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
@@ -6,16 +6,13 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
-import com.example.demo.common.Result;
-import com.example.demo.entity.dto.FileVO;
-import com.example.demo.utils.AliOssUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jakarta.servlet.http.HttpServletResponse;
+import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -23,9 +20,9 @@ import java.net.URLEncoder;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/files")
+@RequestMapping("/files")
 @Api(tags = "文件上传下载控制器")
-public class FileController extends BaseController {
+public class FileController {
     @Value("${server.port}")
     private String port;
 
@@ -113,28 +110,5 @@ public class FileController extends BaseController {
         } catch (Exception e) {
             System.out.println("文件下载失败");
         }
-    }
-
-    /**
-     * OSS文件上传
-     * @param file
-     * @return
-     */
-    @PostMapping("/upload/oss")
-    @ApiOperation(value = "上传文件到OSS接口")
-    public Result ossUpload(MultipartFile file) {
-        return Result.success(AliOssUtil.upload("images/", file));  // 返回结果 url
-    }
-
-    /**
-     * OSS文件删除
-     * @param fileVO 文件存储路径
-     * @return
-     */
-    @DeleteMapping("/delete/oss")
-    @ApiOperation(value = "从OSS删除文件接口")
-    public Result ossUpload(@RequestBody FileVO fileVO) {
-        AliOssUtil.delete(fileVO.getFilekey());
-        return Result.success();
     }
 }
