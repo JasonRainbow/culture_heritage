@@ -11,13 +11,21 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
-@RestControllerAdvice // 返回json
+/**
+ * @author hzx
+ * 返回json
+ */
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
     private static final Log log = LogFactory.get();
 
 
-    // 统一异常处理@ExceptionHandler,主要用于Exception  运行时异常
+    /**
+     * 统一异常处理@ExceptionHandler,主要用于Exception  运行时异常
+     * @param e 异常对象
+     * @return 响应
+     */
     @ExceptionHandler(RuntimeException.class)
     public Result handler(RuntimeException e) {
         log.error("运行时异常：", e);
@@ -35,7 +43,11 @@ public class GlobalExceptionHandler {
         return Result.error("-1", "系统异常，请联系系统管理员！");
     }
 
-    //统一异常处理@ExceptionHandler,主要用于Exception  自定义异常
+    /**
+     * 统一异常处理@ExceptionHandler,主要用于Exception  自定义异常
+     * @param e 自定义异常类对象
+     * @return 响应结果
+     */
     @ExceptionHandler(value = CustomException.class)
     public Result handler(CustomException e) {
         log.error("发生业务异常！原因是：{}", e.getMsg());

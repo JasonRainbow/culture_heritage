@@ -11,17 +11,17 @@
                         <div>
                             <span style="float:left;font-size: larger;margin-bottom: 10px;">{{item.releaseTime}}</span>
                         </div>
-            
+
                         <div>
                             <span style="float:left;font-size: large;text-align: left;margin-bottom: 15px;">{{item.summary | contentLimit}}
                             </span>
                         </div>
                         <div>
-                            <a style="float:left;font-size: larger;text-decoration: none;" :href="item.more">查看讨论</a>
+                            <a style="float:left;font-size: larger;text-decoration: none;color: #405db4" :href="item.more">查看讨论</a>
                         </div>
                     </div>
                 </el-card>
-            </div> 
+            </div>
 <!--            <el-pagination-->
 <!--                background-->
 <!--                layout="prev, pager, next"-->
@@ -41,7 +41,7 @@
         </el-card>
     </div>
 </template>
-  
+
   <script>
   import axios from "axios";
 
@@ -126,7 +126,7 @@
       },
 
     }
-  }  
+  }
   </script>
 
   <style scoped>
@@ -141,11 +141,10 @@
     .box-card1 {
         margin: auto;
         width: 90%;
-       
+
     }
     .box-card2{
         width: 95%;
         margin: auto;
     }
   </style>
-  

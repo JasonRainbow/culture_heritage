@@ -91,11 +91,16 @@ public class Result {
         return error(responseStatusEnum, null);
     }
 
-    // 添加数据信息 链式编程
+    /**
+     * 添加数据信息 链式编程
+     * @param key 键
+     * @param value 值
+     * @return Result对象自身的引用
+     */
     public Result put(String key, Object value) {
         if (this.data == null) {
             // 新建一个哈希映射，用于存储数据
-            this.data = new HashMap<String, Object>();
+            this.data = new HashMap<String, Object>(2);
         }
         // data不为空且不是一个HashMap的实例，则不能put
         if (!(this.data instanceof HashMap)) {

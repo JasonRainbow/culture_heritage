@@ -5,6 +5,10 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * @author hzx
+ * 论坛实体类
+ */
 @Data
 @Builder
 @TableName("comment")

@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @author hzx
+ * MD5加密工具类
+ */
 @Component
 public final class MD5Util {
     public static String encrypt(String strSrc) {

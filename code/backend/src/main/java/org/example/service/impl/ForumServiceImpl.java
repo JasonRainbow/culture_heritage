@@ -21,7 +21,7 @@ public class ForumServiceImpl implements ForumService {
     public Result getAllForum(Integer pageSize, Integer pageNumber) {
         Page<Forum> page = new Page<>(pageNumber,pageSize);
         forumMapper.selectPage(page,null);
-        Map map = new HashMap();
+        Map map = new HashMap(4);
         map.put("current",page.getCurrent());
         map.put("total", page.getTotal());
         map.put("size",page.getSize());

@@ -11,10 +11,10 @@
         on city.cityId = tmp.cityId
     </select>
 
-    <select id="searchAllPostTime" resultType="java.lang.String">
+    <select id="searchAllPostTime" resultType="java.util.List">
         select DISTINCT announcementTime from culture
     </select>
-    <select id="searchAllArea" resultType="java.lang.String">
+    <select id="searchAllArea" resultType="java.util.List">
         select DISTINCT declaringUnit from culture
     </select>
 </mapper>

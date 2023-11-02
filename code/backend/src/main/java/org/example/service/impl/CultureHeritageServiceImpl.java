@@ -32,7 +32,7 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
         LambdaQueryWrapper<CultureHeritage> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.orderByDesc(CultureHeritage :: getAnnouncementTime);
         cultureHeritageMapper.selectPage(page,lambdaQueryWrapper);
-        Map map = new HashMap();
+        Map map = new HashMap(10);
         map.put("current",page.getCurrent());
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
@@ -54,7 +54,7 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
                 .like(!StringUtils.isBlank(searchHeritage.getName()),"name",searchHeritage.getName());
         queryWrapper.orderByDesc("announcementTime");
         cultureHeritageMapper.selectPage(page,queryWrapper);
-        Map map = new HashMap();
+        Map map = new HashMap(5);
         map.put("current",page.getCurrent());
         map.put("total", page.getTotal());
         map.put("size",page.getSize());

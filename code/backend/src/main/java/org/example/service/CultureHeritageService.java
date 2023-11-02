@@ -9,6 +9,9 @@ import org.example.utils.Result;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author hzx
+ */
 public interface CultureHeritageService {
     /**
      * 分页查询所有的非物质文化遗产
@@ -25,7 +28,17 @@ public interface CultureHeritageService {
      */
     Result searchHeritage(SearchHeritage searchHeritage);
 
+    /**
+     * 查询非物质文化遗产在各地级市的分布情况
+     * @return 列表
+     */
     List<CultureHeritageDistributeVO> getCultureHeritageDistribute();
 
+    /**
+     * 分页查询所有的热点非物质文化遗产
+     * @param pageNum 页大小
+     * @param pageSize 页号
+     * @return 页
+     */
     Page<CultureHeritage> getHotHeritageByPage(int pageNum, int pageSize);
 }

@@ -8,8 +8,16 @@ import java.util.List;
 
 public interface CultureHeritageMapper extends BaseMapper<CultureHeritage> {
 
+    /**
+     * 查询所有的非遗的公布时间
+     * @return 列表
+     */
     public List searchAllPostTime();
 
+    /**
+     * 查询所有的发布单位
+     * @return 列表
+     */
     public List searchAllArea();
 
     /**

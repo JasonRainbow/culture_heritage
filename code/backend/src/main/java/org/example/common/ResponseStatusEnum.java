@@ -1,7 +1,12 @@
 package org.example.common;
 
+/**
+ * @author hzx
+ * 响应码和响应消息枚举类
+ */
 public enum ResponseStatusEnum implements CommonResp{
 
+    // 请求成功
     SUCCESS("0","请求成功!"),
     LOGIN_SUCCESS("0", "登录成功！"),
     LOGOUT_SUCCESS("0", "注销成功！"),

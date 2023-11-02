@@ -16,7 +16,11 @@ public class CustomException extends RuntimeException implements CommonResp {
         return this.commonResp.getMsg();
     }
 
-    // 接收自定义msg的方式构造业务异常
+    /**
+     * 接收自定义msg的方式构造业务异常
+     * @param msg 消息
+     * @param commonResp CommonResp的实现类对象
+     */
     public CustomException(String msg, CommonResp commonResp) {
         super();
         this.commonResp = commonResp;
