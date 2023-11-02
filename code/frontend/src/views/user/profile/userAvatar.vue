@@ -80,10 +80,6 @@ export default {
       resizeHandler: null
     };
   },
-  created() {
-    // console.log(this.options.img)
-    // console.log(this.$store.state.admin)
-  },
   methods: {
     // 编辑头像
     editCropper() {
@@ -135,16 +131,16 @@ export default {
     uploadImg() {
       this.$refs.cropper.getCropBlob(data => {
         let formData = new FormData();
+        console.log(data)
         formData.append("file", data);
-        // console.log(formData)
-        // console.log(data)
-        /*this.$store.dispatch("uploadAvatar", formData).then((res)=>{
+        formData.append("id", this.$store.state.user.id)
+        this.$store.dispatch("uploadAvatar", formData).then((res)=>{
           if (res.code === "0") {
             this.open = false
-            this.visible = false;
-            this.options.img = res.data;
+            this.visible = false
+            this.options.img = res.data
           }
-        })*/
+        })
       });
     },
     // 实时预览

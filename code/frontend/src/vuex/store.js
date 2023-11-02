@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { user_login } from '@/api/user_api'
-import { setLocalStorageItem } from "@/utils/auth";
+import {uploadUserAvatar, user_login} from '@/api/user_api'
+import {parseLocalStorageItem, setLocalStorageItem} from "@/utils/storage";
+import {Message} from "element-ui";
 Vue.use(Vuex);
 // 登录验证
 export default new Vuex.Store({
   state: {
-    user: "",
+    user: parseLocalStorageItem("user"),
     token: "", // 从cookie中获取token
     modelUri: "assets/model1/scene.gltf"
   },
@@ -25,6 +26,7 @@ export default new Vuex.Store({
       const password = userInfo.password
       return new Promise((resolve,reject)=>{
         user_login({username,password}).then((res)=> {
+          console.log("登录返回数据："+res)
           setLocalStorageItem("user",res.data)
           commit('SET_USER', res.data)
           resolve()
@@ -33,6 +35,25 @@ export default new Vuex.Store({
         })
       })
     },
+    uploadAvatar({commit, state}, formData) {
+      return new Promise((resolve, reject)=>{
+        uploadUserAvatar(formData).then(res => { // 上传用户头像并保存
+          console.log(res)
+          if (res.code === "0") {
+            let store_user = state.user
+            store_user.avatar = res.data.avatar
+            setLocalStorageItem("user", store_user)
+            commit("SET_USER", store_user)
+            Message.success("修改头像成功");
+          } else {
+            console.log(res.msg)
+          }
+          resolve(res)
+        }).catch((err)=>{
+          reject(err)
+        });
+      })
+    }
   },
   getters: {
     // 获取用户头像

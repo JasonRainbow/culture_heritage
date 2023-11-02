@@ -59,7 +59,7 @@
 import userAvatar from "./userAvatar";
 import userInfo from "./userInfo";
 import resetPwd from "./resetPwd";
-import { parseLocalStorageItem,setLocalStorageItem } from "@/utils/auth";
+import { parseLocalStorageItem,removeLocalStorageUser } from "@/utils/storage";
 import 'animate.css'
 
 export default {
@@ -101,8 +101,8 @@ export default {
             type: 'success',
             message: '已退出登录!'
           })
+          removeLocalStorageUser("user")
           this.$store.commit("SET_USER","") // 更新仓库用户信息
-          setLocalStorageItem("user","") // 更新本地存储用户信息
           this.$router.push("/home")
         })
         .catch(() => {

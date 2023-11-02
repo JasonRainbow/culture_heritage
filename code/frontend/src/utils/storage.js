@@ -40,7 +40,8 @@ export const removeLocalStorageUser = ()=>{
  * @returns {any}
  */
 export const parseLocalStorageItem = (key)=>{
-  return JSON.parse(localStorage.getItem(key))
+  const object = localStorage.getItem(key)
+  return object ? JSON.parse(object) : ''
 }
 
 /**
