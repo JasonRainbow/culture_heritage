@@ -1,3 +1,4 @@
+<!--未登录的界面显示-->
 <template>
   <el-row style="display: flex; justify-content: center;">
     <el-col :span="16" :xs="24">
