@@ -3,8 +3,8 @@
 */
 <template>
   <el-pagination class="page-box" @size-change="handleSizeChange"
-                 @current-change="handleCurrentChange" background :current-page="pageParam.currentPage"
-                 :page-sizes="[10, 20, 30, 40]" :page-size="pageParam.pageSize" layout="total, sizes, prev, pager, next, jumper"
+                 @current-change="handleCurrentChange" background :current-page="childMsg.currentPage"
+                 :page-sizes="[10, 20, 30, 40]" :page-size="childMsg.pageSize" layout="total, sizes, prev, pager, next, jumper"
                  :total="childMsg.total">
   </el-pagination>
 </template>
