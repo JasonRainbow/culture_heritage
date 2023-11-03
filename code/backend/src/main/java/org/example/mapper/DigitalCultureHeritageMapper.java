@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author hzx
+ * 数字非遗增删改查接口
  */
 @Repository
 public interface DigitalCultureHeritageMapper extends BaseMapper<DigitalCultureHeritage> {
