@@ -1,3 +1,4 @@
+<!--用户登录界面-->
 <template>
   <div class="wrapper">
     <div style="margin: auto; margin-top: 85px; font-size: 27px; text-align: center">湖湘传统技艺类非物质文化遗产数字化与虚拟体验平台</div>
@@ -28,6 +29,7 @@
 </template>
 <script>
 
+// 登录信息有效性验证
 export default {
   name: "UserLogin",
   data() {
