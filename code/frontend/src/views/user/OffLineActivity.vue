@@ -1,3 +1,4 @@
+<!--展示线下相关文化的体验地点-->
 <template>
     <div class="parent-container">
       <el-card class="box-card1" shadow="always">
