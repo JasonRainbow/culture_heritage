@@ -3,12 +3,14 @@ package org.example.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.example.pojo.CultureHeritage;
 import org.example.pojo.CultureHeritageDistributeVO;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author yt
  */
+@Repository
 public interface CultureHeritageMapper extends BaseMapper<CultureHeritage> {
 
     /**
