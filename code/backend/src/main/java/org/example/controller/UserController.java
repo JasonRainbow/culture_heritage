@@ -13,10 +13,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+/**
+ * @author yt
+ */
 @Tag(name="用户",description = "用户相关接口")
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
     @Autowired
     UserService userService;
 
@@ -26,7 +30,6 @@ public class UserController {
     @Operation(summary = "注册", description = "用户注册接口")
     @PostMapping("/register")
     public Result register(@RequestBody User user){
-        System.out.println(user);
         return userService.register(user);
     }
 
@@ -46,9 +49,7 @@ public class UserController {
     @Operation(summary = "修改", description = "修改用户密码接口，传用户名、密码和修改后的密码")
     @PutMapping("/rpassword")
     public Result rPassword(@RequestBody UserPassword userPassword){
-        System.out.println(userPassword);
         return userService.rPassword(userPassword);
-
     }
     @Operation(summary = "修改", description = "上传并修改用户的头像")
     @PutMapping("/uploadAvatar")

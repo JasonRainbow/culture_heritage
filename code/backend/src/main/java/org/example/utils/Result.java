@@ -8,6 +8,7 @@ import org.example.common.ResponseStatusEnum;
 import java.util.HashMap;
 
 /**
+ * @author hzx
  * 响应消息
  */
 @ApiModel(value = "响应结果实体", description = "响应结果实体")
@@ -59,11 +60,15 @@ public class Result {
         return Result.success(null);
     }
 
-    public static Result success(String code, String msg) {
+    private static Result info(String code, String msg) {
         Result result = new Result();
         result.setCode(code);
         result.setMsg(msg);
         return result;
+    }
+
+    public static Result success(String code, String msg) {
+        return info(code, msg);
     }
 
     public static Result success(Object data) {
@@ -74,10 +79,7 @@ public class Result {
     }
 
     public static Result error(String code, String msg) {
-        Result result = new Result();
-        result.setCode(code);
-        result.setMsg(msg);
-        return result;
+        return info(code, msg);
     }
 
     public static Result error(ResponseStatusEnum responseStatusEnum, Object data) {
@@ -91,11 +93,16 @@ public class Result {
         return error(responseStatusEnum, null);
     }
 
-    // 添加数据信息 链式编程
+    /**
+     * 添加数据信息 链式编程
+     * @param key 键
+     * @param value 值
+     * @return Result对象自身的引用
+     */
     public Result put(String key, Object value) {
         if (this.data == null) {
             // 新建一个哈希映射，用于存储数据
-            this.data = new HashMap<String, Object>();
+            this.data = new HashMap<String, Object>(2);
         }
         // data不为空且不是一个HashMap的实例，则不能put
         if (!(this.data instanceof HashMap)) {

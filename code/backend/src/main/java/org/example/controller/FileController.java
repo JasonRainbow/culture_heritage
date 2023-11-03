@@ -5,7 +5,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.service.FileService;
 import org.example.utils.Result;

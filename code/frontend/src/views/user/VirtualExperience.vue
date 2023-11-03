@@ -74,7 +74,6 @@ export default {
     }
   },
   created() {
-    console.log("hhh")
     this.getData()
   }
 }

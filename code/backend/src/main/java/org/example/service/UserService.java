@@ -4,13 +4,36 @@ import org.example.pojo.User;
 import org.example.pojo.UserPassword;
 import org.example.utils.Result;
 
+/**
+ * @author yt
+ */
 public interface UserService {
-    public Result update(User user);
+    /**
+     * 更新用户的信息
+     * @param user 用户实体
+     * @return 响应结果
+     */
+    Result update(User user);
 
-    public Result register(User user);
+    /**
+     * 用户注册
+     * @param user 用户实体
+     * @return 响应对象
+     */
+    Result register(User user);
 
-    public Result login(User user);
+    /**
+     * 用户登录服务
+     * @param user 用户实体
+     * @return 响应结果
+     */
+    Result login(User user);
 
+    /**
+     * 修改用户密码服务
+     * @param userPassword 用户密码实体 包含旧密码和新密码
+     * @return
+     */
     Result rPassword(UserPassword userPassword);
 
     /**

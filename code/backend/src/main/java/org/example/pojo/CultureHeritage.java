@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * @author yt
+ */
 @Data
 @Builder
 @TableName("culture")
@@ -32,4 +35,5 @@ public class CultureHeritage {
     private String introduction;
     private String citeUrl;
     private String imgUrl;
+    private Integer topic;
 }

@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author yt
+ */
 @Service
 public class OfflineActivityServiceImpl implements OfflineActivityService {
 
@@ -31,7 +34,7 @@ public class OfflineActivityServiceImpl implements OfflineActivityService {
     public Result getAllOfflineActivityByPage(Integer pageSize, Integer pageNumber) {
         IPage<OfflineActivity> page =new Page<>(pageNumber, pageSize);
         offlineActivityMapper.selectPage(page,null);
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<>(5);
         map.put("current",page.getCurrent());
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
@@ -47,7 +50,6 @@ public class OfflineActivityServiceImpl implements OfflineActivityService {
         }
         offlineActivity.setCultureId(1);
         offlineActivity.setIsPassed(0);
-        System.out.println(offlineActivity);
         int rows = offlineActivityMapper.insert(offlineActivity);
         if(rows>0){
             return Result.success();

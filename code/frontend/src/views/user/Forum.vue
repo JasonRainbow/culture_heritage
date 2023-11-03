@@ -11,17 +11,17 @@
                         <div>
                             <span style="float:left;font-size: larger;margin-bottom: 10px;">{{item.releaseTime}}</span>
                         </div>
-            
+
                         <div>
                             <span style="float:left;font-size: large;text-align: left;margin-bottom: 15px;">{{item.summary | contentLimit}}
                             </span>
                         </div>
                         <div>
-                            <a style="float:left;font-size: larger;text-decoration: none;" :href="item.more">查看讨论</a>
+                            <a style="float:left;font-size: larger;text-decoration: none;color: #405db4" :href="item.more">查看讨论</a>
                         </div>
                     </div>
                 </el-card>
-            </div> 
+            </div>
 <!--            <el-pagination-->
 <!--                background-->
 <!--                layout="prev, pager, next"-->
@@ -41,9 +41,9 @@
         </el-card>
     </div>
 </template>
-  
+
   <script>
-  import axios from "axios";
+  import {getAllForum} from "@/api/forum_api";
 
   export default {
     name: 'HelloWorld',
@@ -100,22 +100,7 @@
       }
     },
     mounted(){
-      let url = "http://localhost:5000/getAllForum"+'/'+this.pageSize+'/'+this.current;
-      axios.get(url)
-          .then(response =>{
-            console.log("1"+response.code)
-            //console.log(response.data.current)
-            console.log(1,response.data)
-
-              this.forumData=response.data.data.records,
-                  //console.log(this)
-              //console.log(this.forumData),
-              this.current=response.data.data.current,
-              this.pageSize=response.data.data.size,
-              this.total=response.data.data.total
-                  //console.log(this.current)
-      });
-
+      this.getData()
     },
     methods:{
       handleSizeChange(){
@@ -124,9 +109,21 @@
       handleCurrentChange(){
         this.mounted()
       },
-
+      getData() {
+        getAllForum({
+          pageNum: this.current,
+          pageSize: this.pageSize
+        }).then((res)=>{
+          if (res.code === "0") {
+            this.forumData = res.data.records
+            this.current = res.data.current
+            this.pageSize = res.data.size
+            this.total=res.data.total
+          }
+        })
+      }
     }
-  }  
+  }
   </script>
 
   <style scoped>
@@ -141,11 +138,10 @@
     .box-card1 {
         margin: auto;
         width: 90%;
-       
+
     }
     .box-card2{
         width: 95%;
         margin: auto;
     }
   </style>
-  

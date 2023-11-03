@@ -1,7 +1,12 @@
 package org.example.common;
 
+/**
+ * @author hzx
+ * 响应码和响应消息枚举类
+ */
 public enum ResponseStatusEnum implements CommonResp{
 
+    // 请求成功
     SUCCESS("0","请求成功!"),
     LOGIN_SUCCESS("0", "登录成功！"),
     LOGOUT_SUCCESS("0", "注销成功！"),
@@ -33,6 +38,8 @@ public enum ResponseStatusEnum implements CommonResp{
     PASSWORD_EMPTY("1020", "密码为空"),
     NAME_EMPTY("1021", "用户昵称为空"),
     UPDATE_PASSWORD_EMPTY("1022","修改密码为空"),
+
+    MD5_ENCRYPT_ERROR("1023", "MD5加密出错"),
 
 
 

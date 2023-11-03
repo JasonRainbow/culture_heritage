@@ -4,6 +4,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * @author yt
+ */
 @Schema(title="分页查询文化遗产参数")
 @Data
 @Builder

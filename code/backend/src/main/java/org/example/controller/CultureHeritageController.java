@@ -8,6 +8,9 @@ import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author yt
+ */
 @Tag(name="文化遗产",description = "文化遗产相关接口")
 @RestController
 public class CultureHeritageController {

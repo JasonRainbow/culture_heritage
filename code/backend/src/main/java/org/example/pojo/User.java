@@ -8,6 +8,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.Builder;
 
+/**
+ * @author yt
+ */
 @Schema(title = "用户相关信息")
 @Data
 @Builder

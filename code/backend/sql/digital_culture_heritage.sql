@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 02/11/2023 15:10:53
+ Date: 02/11/2023 20:27:53
 */
 
 SET NAMES utf8mb4;
@@ -194,8 +194,9 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 3, '张三', '过往烟云2', '', '湖南师范大学', '726354856@qq.com', '13135475865', NULL, '');
-INSERT INTO `user` VALUES (2, 2, '李四', '雨纷纷', '123456', '湘西染布有限公司', '9995555123@qq.com', '13587946534', 30, NULL);
+INSERT INTO `user` VALUES (1, 3, '张三', '过往烟云2', '', '湖南师范大学', '726354856@qq.com', '13135475865', NULL, '/api/files/get/e26915d5328b4a779a2370f88ce73595');
+INSERT INTO `user` VALUES (2, 2, '李四', '雨纷纷', '123456', '湘西染布有限公司', '9995555123@qq.com', '13587946534', 30, '/api/files/get/e3a87ce5141e4a1b9dcfdf53f7633032');
 INSERT INTO `user` VALUES (77, 3, '王五', '过往烟云2', 'e10adc3949ba59abbe56e057f20f883e', '湖南师范大学', '123456765@qq.com', '13135475865', NULL, '');
+INSERT INTO `user` VALUES (78, 3, 'hzx', '黄sir', 'e10adc3949ba59abbe56e057f20f883e', '湖南师范大学', '1966752024@qq.com', '16680802519', NULL, '/api/files/get/f82d0244f7084ed9a653556f7c768a51');
 
 SET FOREIGN_KEY_CHECKS = 1;

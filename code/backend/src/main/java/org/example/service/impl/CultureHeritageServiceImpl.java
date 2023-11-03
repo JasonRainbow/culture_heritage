@@ -19,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * @author yt
+ */
 @Service
 public class CultureHeritageServiceImpl implements CultureHeritageService {
 
@@ -32,15 +35,15 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
         LambdaQueryWrapper<CultureHeritage> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.orderByDesc(CultureHeritage :: getAnnouncementTime);
         cultureHeritageMapper.selectPage(page,lambdaQueryWrapper);
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<>(10);
         map.put("current",page.getCurrent());
         map.put("total", page.getTotal());
         map.put("size",page.getSize());
         map.put("records", page.getRecords());
         map.put("totalPage",(page.getTotal()+page.getSize()-1)/page.getSize());
-        List postTimeList = cultureHeritageMapper.searchAllPostTime();
+        List<String> postTimeList = cultureHeritageMapper.searchAllPostTime();
         map.put("postTimeList",postTimeList);
-        List areaList = cultureHeritageMapper.searchAllArea();
+        List<String> areaList = cultureHeritageMapper.searchAllArea();
         map.put("areaList",areaList);
         return Result.success(map);
     }
@@ -54,7 +57,7 @@ public class CultureHeritageServiceImpl implements CultureHeritageService {
                 .like(!StringUtils.isBlank(searchHeritage.getName()),"name",searchHeritage.getName());
         queryWrapper.orderByDesc("announcementTime");
         cultureHeritageMapper.selectPage(page,queryWrapper);
-        Map map = new HashMap();
+        Map<String, Object> map = new HashMap<>(5);
         map.put("current",page.getCurrent());
         map.put("total", page.getTotal());
         map.put("size",page.getSize());

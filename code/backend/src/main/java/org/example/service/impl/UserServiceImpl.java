@@ -13,16 +13,21 @@ import org.example.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author yt
+ */
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+    private static final String USER_NAME = "username";
+
     @Override
     public Result register(User user){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         validate(user.getUsername(), user.getPassword(), user.getName());
-        queryWrapper.eq("username",user.getUsername());
+        queryWrapper.eq(USER_NAME,user.getUsername());
         boolean isExist = userMapper.exists(queryWrapper);
         if(isExist){
             return Result.error(ResponseStatusEnum.USER_ACCOUNT_EXISTED);
@@ -41,7 +46,7 @@ public class UserServiceImpl implements UserService {
         String password = user.getPassword();
         validate(username, password);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username",username).eq("password",MD5Util.encrypt(password));
+        queryWrapper.eq(USER_NAME,username).eq("password",MD5Util.encrypt(password));
         User res = userMapper.selectOne(queryWrapper);
         if(res != null){
             res.setPassword(null);
@@ -54,7 +59,7 @@ public class UserServiceImpl implements UserService {
     public Result rPassword(UserPassword userPassword) {
         validate(userPassword.getUsername(), userPassword.getPassword(), userPassword.getRpassword(),1);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", userPassword.getUsername());
+        queryWrapper.eq(USER_NAME, userPassword.getUsername());
         User user = userMapper.selectOne(queryWrapper);
         if(user==null){
             return Result.error(ResponseStatusEnum.USER_ACCOUNT_NOT_EXIST);
@@ -122,7 +127,7 @@ public class UserServiceImpl implements UserService {
     public Result update(User user) {
         validate(user.getUsername());
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username",user.getUsername());
+        queryWrapper.eq(USER_NAME,user.getUsername());
         User user1 = userMapper.selectOne(queryWrapper);
         if(user1==null){
             return Result.error(ResponseStatusEnum.USER_ACCOUNT_NOT_EXIST);
