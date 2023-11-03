@@ -47,7 +47,7 @@
 2. IDE：IntelliJ IDEA 2021.2.2 (Ultimate Edition)
 3. 前端设计框架：Vue.js
 4. 平台：Web
-5. 框架：SpringBoot、Vue、MyBatis-Plu
+5. 框架：SpringBoot、Vue、MyBatis-Plus
 6. 代码仓库链接：https://github.com/HZXhuang/culture_heritage.git
 
 ###  开发中遇到的问题及解决方案
@@ -88,5 +88,4 @@
 | ResponseStatusEnum | 封装所有的响应码和响应码说明             | 以枚举类的形式统一封装后台对前端请求处理结果所有可能的响应码和响应码描述信息 |
 | MD5Util            | 对用户存储到数据库的密码进行简单MD5加密  | 对存储到数据库的用户密码简单加密防止用户密码泄露，同时通过对用户密码再次加密可以对比用户密码正确性 |
 | Result             | 封装响应码、响应码说明以及返回前端的数据 | 对于前端的不同请求，以统一的方式封装对不同的处理结果返回的不同响应码、响应码描述信息以及相关数据 |
-
 
