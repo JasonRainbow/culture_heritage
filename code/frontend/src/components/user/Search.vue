@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="margin-bottom: 20px">
-      <el-select clearable style="width: 150px; margin-right: 10px" v-model="search_data.area" placeholder="请选择地区">
+      <el-select :clearable="true" style="width: 150px; margin-right: 10px" v-model="search_data.area" placeholder="请选择地区">
         <el-option
             v-for="(item,index) in options.area"
             :key="index"
@@ -9,7 +9,7 @@
             :value="item">
         </el-option>
       </el-select>
-      <el-select clearable style="width: 180px; margin-right: 10px" v-model="search_data.postTime" placeholder="请选择公布时间">
+      <el-select :clearable="true" style="width: 180px; margin-right: 10px" v-model="search_data.postTime" placeholder="请选择公布时间">
         <el-option
             v-for="(item,index) in options.postTime"
             :key="index"
@@ -21,7 +21,7 @@
                 style="width: 220px; margin-right: 20px"
                 v-model="search_data.name"
                 placeholder="请输入关键词：项目名称"
-                clearable>
+                :clearable="true">
       </el-input>
       <el-button type="primary" @click="searchCultureHeritage()">搜索</el-button>
     </div>
@@ -148,17 +148,32 @@ export default {
     callFather(param) {
       this.search_data.pageNumber = param.pageNumber;
       this.search_data.pageSize = param.pageSize;
-      this.searchCultureHeritage();
+      this.CutPage();
     },
     searchCultureHeritage(){
-      console.log(this.search_data.postTime)
-      if(this.search_data.name!=null || this.search_data.postTime!=null || this.search_data.area!=null){
-        this.search_data.pageNumber=1;
-      }
+      // let flag = this.search_data.name!=null && this.search_data.name !=="" || this.search_data.postTime!=null && this.search_data.postTime !=='' || this.search_data.area!=null && this.search_data.area!==''
+      // if(flag){
+      //   this.search_data.pageNumber=1;
+      // }
+      this.search_data.pageNumber=1;
       searchHeritage(null,this.search_data).then(res=>{
         if(res.code === '0'){
           this.list_data=res.data.records;
-          this.pageParam.total=res.data.total
+          this.pageParam.total=res.data.total;
+          this.pageParam.currentPage=1;
+          console.log("currentPage",this.pageParam.currentPage);
+          this.pageParam.pageSize=res.data.size;
+        }
+      })
+    },
+
+    CutPage(){
+      searchHeritage(null,this.search_data).then(res=>{
+        if(res.code === '0'){
+          this.list_data=res.data.records;
+          this.pageParam.total=res.data.total;
+          this.pageParam.currentPage=res.data.current;
+          this.pageParam.pageSize=res.data.size;
         }
       })
     },
