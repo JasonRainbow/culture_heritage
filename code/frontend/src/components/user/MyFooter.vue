@@ -136,7 +136,7 @@
       <div class="content">
 
         <div class="footer__addr">
-          <h1 class="footer__logo">Culture</h1>
+          <h1 class="footer__logo">湖湘非遗</h1>
           <h2>Contact</h2>
           <address>
             Hunan Normal University<br>
@@ -281,7 +281,7 @@ export default {
 
 
 .footer__logo {
-  font-family: 华文楷体;
+  font-family: 华文彩云;
   font-weight: 600;
   /*text-transform: lowercase;*/
   font-size: 1.5rem;

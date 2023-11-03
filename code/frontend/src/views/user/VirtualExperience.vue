@@ -1,3 +1,4 @@
+<!--虚拟仿真系统虚拟体验技艺过程-->
 <template>
   <div style="margin: 0 50px">
     <el-row :gutter="20">
