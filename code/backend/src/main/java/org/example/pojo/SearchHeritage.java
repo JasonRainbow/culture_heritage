@@ -6,6 +6,7 @@ import lombok.Data;
 
 /**
  * @author yt
+ * 文化遗产实体类
  */
 @Schema(title="分页查询文化遗产参数")
 @Data

@@ -6,6 +6,7 @@ import org.example.utils.Result;
 
 /**
  * @author yt
+ * 用户信息相关服务
  */
 public interface UserService {
     /**
