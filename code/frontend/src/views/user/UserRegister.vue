@@ -44,7 +44,7 @@
 <script>
 
 import {user_register} from "@/api/user_api";
-
+// 注册信息有效性检验
 export default {
   name: "UserRegister",
   data() {
