@@ -1,3 +1,4 @@
+<!--线下活动举办者或者有关湖湘传统技艺类非物质文化遗产的商家申请入驻平台，吸引更过用户前去线下体验-->
 <template>
   <div class="parent_div">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="apply-form">
