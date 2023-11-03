@@ -17,13 +17,13 @@ public interface CultureHeritageMapper extends BaseMapper<CultureHeritage> {
      * 查询所有的非遗的公布时间
      * @return 列表
      */
-    public List<String> searchAllPostTime();
+     List<String> searchAllPostTime();
 
     /**
      * 查询所有的发布单位
      * @return 列表
      */
-    public List<String> searchAllArea();
+     List<String> searchAllArea();
 
     /**
      * 查询非物质文化遗产的分布情况
